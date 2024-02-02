@@ -71,3 +71,9 @@ open at state 3, both of the available I/O units can be deployed to resupply the
 queue. Finally, it is possible for the cpu to exhaust the job queue at state 4.
 Since the 2 I/O units are available at state 4, refilling of job slots proceeds
 and so there will be expected steady state performance over time.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/percpuio.R")
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+![](images/percpuio.jpg)
