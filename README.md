@@ -58,9 +58,8 @@ Performance Queuing Simulation (percpuio)
 
 ![](images/percpuio_diagram.jpg)
 
-It has taken me some time to wrap my head around this one. It seems that there
-are 3 slots in a job queue for computer processing. As the cpu processes a job
-the I/O system can place a new job into the queue.
+This model is based on 3 slots existing in a job queue for computer processing.
+As the cpu processes a job the I/O system can place a new job into the queue.
 
 In state 1 the queue is full with 3 jobs for the cpu to perform. The cpu can
 perform one job at a time, so state 2 is arrived at where there are 2 jobs left
