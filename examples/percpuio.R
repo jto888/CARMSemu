@@ -48,7 +48,7 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/ChainedS
 	time_label<-"Hours"						
 	prob_label<-"Probability"						
 	spline_knots<-10   # a fraction of steps to create a smoothed curve on plot						
-	colors<-c("red4","mediumseagreen","mistyrose4","navyblue","maroon4")						
+	colors<-c("red4","mediumseagreen","tan","navyblue","maroon4")						
 							
 # Generate the plot							
 	x<-seq(0, simhistory, by=simhistory/steps)						
