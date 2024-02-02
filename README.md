@@ -35,7 +35,7 @@ these examples are demonstrated, with code that anyone can run in an R console.
     tires or the spare go flat
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/.R")
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/jeep.R")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ![](images/jeep.jpeg)
