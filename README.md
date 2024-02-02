@@ -24,6 +24,8 @@ these examples are demonstrated, with code that anyone can run in an R console.
 jeep.R
 ------
 
+![](images/jeep_diagram.jpg)
+
 -   This model considers 2 Markov chains for modest comparison in one run
 
 -   Initial states are 1 and 3, both considering 4 tires working
@@ -58,15 +60,15 @@ Performance Queuing Simulation (percpuio)
 
 It has taken me some time to wrap my head around this one. It seems that there
 are 3 slots in a job queue for computer processing. As the cpu processes a job
-the I/O system can place new jobs into the queue slots.
+the I/O system can place a new job into the queue.
 
 In state 1 the queue is full with 3 jobs for the cpu to perform. The cpu can
 perform one job at a time, so state 2 is arrived at where there are 2 jobs left
 in the queue and one slot open. In state 2  the cpu can operate on a single job
-or the I/O can refill the single open slot. Since the cpu job rate is somewhat
-higher than a single I/O rate there is a greater propensity to move to state 3
-where only one job is left in the queue. Since there are 2 slots open at state
-3, both of the available I/O units can be deployed to fill the queue. Finally,
-it is possible for the cpu to exhaust the job queue at state 4. Since the 2 I/O
-units are available at state 4, refilling of job slots proceeds and so there
-will be expected steady state performance over time.
+or the I/O can refill the single open slot to alter the state. Since the cpu job
+rate is somewhat higher than a single I/O rate there is a greater propensity to
+move to state 3 where only one job is left in the queue. Since there are 2 slots
+open at state 3, both of the available I/O units can be deployed to resupply the
+queue. Finally, it is possible for the cpu to exhaust the job queue at state 4.
+Since the 2 I/O units are available at state 4, refilling of job slots proceeds
+and so there will be expected steady state performance over time.
