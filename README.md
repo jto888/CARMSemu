@@ -36,8 +36,6 @@ these examples are demonstrated, with code that anyone can run in an R console.
 
  
 
-	
-
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/.R")	
+	source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/.R")	
 
 ![](images/jeep.jpeg)
