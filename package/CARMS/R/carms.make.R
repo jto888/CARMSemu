@@ -1,6 +1,6 @@
 # carms.make.R
 # Inspired by a CARMS application originally written by Paul Pukite in 1993
-# His application was featured in a 1998 book "Modeling for Reliability Analysis"
+# The CARMS application was featured in a 1998 book "Modeling for Reliability Analysis"
 # but was never upgraded beyond its targeted 16-bit Windows 3.1 environment.
 # The CARMS package by David J. Silkworth provides an emulation of the original
 # CARMS application on R where it is expected to be useable cross-platform

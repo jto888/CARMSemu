@@ -1,0 +1,1 @@
+R CMD INSTALL --build %1 --no-test-load --no-multiarch
