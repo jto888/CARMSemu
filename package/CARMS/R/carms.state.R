@@ -52,6 +52,7 @@ op$box.prop <- 21/24			# state "box" proportions h/w
 op$col <- x$colors[i]			# a color palate must be set in carms.make		
 op$lty <- "solid"			# can't imagine anything other than a solid line		
 op$lwd <- 2			# unlikely to change line width (in pixels?)		
+op$cex.txt <- 0.8
 					
 # deal with dots args here with validations, keeping in mind that a Pfunction will be added here					
 					
