@@ -46,13 +46,13 @@ if(!is(x,"carms")){
 op<-list()					
 # diagram options for this state					
 op$box.type <- "ellipse"			# shape for the state "box" in diagram ("rect", "diamond", "round", "hexa", "multi")		
-op$box.size <- 0.06   			# length (width) of state "box" (in terms of overall diagram width?)		
+op$box.size <- 0.04   			# length (width) of state "box" (in terms of overall diagram width?)		
 op$box.prop <- 21/24			# state "box" proportions h/w		
 # graph plot options for this state					
 op$col <- x$colors[i]			# a color palate must be set in carms.make		
 op$lty <- "solid"			# can't imagine anything other than a solid line		
 op$lwd <- 2			# unlikely to change line width (in pixels?)		
-op$cex.txt <- 0.6
+op$cex.txt <- 0.4
 					
 # deal with dots args here with validations, keeping in mind that a Pfunction will be added here					
 					
