@@ -14,11 +14,13 @@ importFrom("diagram", "plotmat")
 
 export(
 	carms.make,
-	carms.state
+	carms.state,
+#	carms.base,	
 #	carms.arrow,
 #	diagram.carms,
 #	ChainedSimulation,
 #	plot.carms
+diagram.carms
 )
 #S3method(plot, carms) 
 #S3method(diagram, carms)
