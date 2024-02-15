@@ -26,6 +26,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Windows (DOS) batch files
+*.bat
+
 # =========================
 # Operating System Files
 # =========================
