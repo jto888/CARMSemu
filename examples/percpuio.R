@@ -13,7 +13,7 @@
 # refilling of job slots proceeds and so there will be expected steady state performance over time.							
 							
 #source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/ChainedSimulation.R")							
-#source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/RungeKutta.R")		
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/RungeKutta.R")		
 
 							
 # key inputs							
