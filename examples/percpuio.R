@@ -41,7 +41,7 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/RungeKut
 							
 #	outmat<-ChainedSimulation(states, tt, simcontrol)						
 #							
-#	nstates<-length(states)						
+nstates<-length(states)						
 #	stepsize<-simhistory/steps						
 #	outmat<-outmat/(stepsize*cycles)						
 #	initial_state_probabilities<-matrix(states, nrow=1, ncol=nstates)						
