@@ -18,7 +18,8 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/RungeKut
 							
 # key inputs							
 	# vector of states with initial probabilities						
-	states<-c(1,rep(0,3))						
+	states<-c(1,rep(0,3))
+	nstates<-length(states)	
 	# definition of transitions using base transition values						
 	b1<-1.5e-1  # CPU service rate						
 	b2<-1e-1   # I/O arrival rate						
@@ -41,7 +42,7 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/RungeKut
 							
 #	outmat<-ChainedSimulation(states, tt, simcontrol)						
 #							
-nstates<-length(states)						
+#   nstates<-length(states)						
 #	stepsize<-simhistory/steps						
 #	outmat<-outmat/(stepsize*cycles)						
 #	initial_state_probabilities<-matrix(states, nrow=1, ncol=nstates)						
