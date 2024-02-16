@@ -12,7 +12,9 @@
 # Finally, it is possible for the cpu to exhaust the job queue at state 4. Since the 2 I/O units are available at state 4, 							
 # refilling of job slots proceeds and so there will be expected steady state performance over time.							
 							
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/ChainedSimulation.R")							
+#source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/ChainedSimulation.R")							
+#source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/RungeKutta.R")		
+
 							
 # key inputs							
 	# vector of states with initial probabilities						
@@ -34,14 +36,16 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/ChainedS
 	simhistory<-60						
 	simcontrol<-list(steps=steps, cycles=cycles, simhistory=simhistory)						
 							
-# Run the simulation							
-	outmat<-ChainedSimulation(states, tt, simcontrol)						
+# Run the simulation
+	outmat<-RungeKutta(states, tt, simcontrol)
 							
-	nstates<-length(states)						
-	stepsize<-simhistory/steps						
-	outmat<-outmat/(stepsize*cycles)						
-	initial_state_probabilities<-matrix(states, nrow=1, ncol=nstates)						
-	outmat<-rbind(initial_state_probabilities, outmat)						
+#	outmat<-ChainedSimulation(states, tt, simcontrol)						
+#							
+#	nstates<-length(states)						
+#	stepsize<-simhistory/steps						
+#	outmat<-outmat/(stepsize*cycles)						
+#	initial_state_probabilities<-matrix(states, nrow=1, ncol=nstates)						
+#	outmat<-rbind(initial_state_probabilities, outmat)						
 							
 # graphical characteristics							
 	Title<-"Performance queuing simulation\n3 jobs, 1 CPU, and 2 I/O devices available."						
