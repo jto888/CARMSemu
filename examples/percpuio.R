@@ -55,7 +55,8 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/RungeKut
 	spline_knots<-10   # a fraction of steps to create a smoothed curve on plot						
 	colors<-c("red4","mediumseagreen","snow4","navyblue","maroon4")						
 							
-# Generate the plot							
+# Generate the plot	
+	nstates<-length(states)					
 	x<-seq(0, simhistory, by=simhistory/steps)						
 	dev.new(width=5, height=4, unit="in")						
 	plot(x,outmat[,1], type="n",						
