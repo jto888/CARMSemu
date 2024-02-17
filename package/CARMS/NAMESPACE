@@ -15,7 +15,7 @@ importFrom("diagram", "plotmat")
 export(
 	carms.make,
 	carms.state,
-#	carms.base,	
+	carms.base,	
 #	carms.arrow,
 #	diagram.carms,
 #	ChainedSimulation,

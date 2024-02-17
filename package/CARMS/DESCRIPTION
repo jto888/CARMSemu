@@ -1,6 +1,6 @@
 Package: CARMS
-Version: 0.0.2
-Date: 2024-2-15
+Version: 0.0.3
+Date: 2024-2-17
 Title: Computer Aided Rate Modeling and Simulation
 Authors@R: c(person("David", "Silkworth", email = "djsilk@openreliability.org", role = "aut"), person("Paul", "Pukite", role = "aut"), person("Jacob", "Ormerod", email = "jake@openreliability.org", role = "cre"), person("OpenReliability.org", role = "cph"))
 Description: Continuous time Markov modeling for reliability analysis. Emulation of an application originally created by Paul Pukite. Jan Pukite and Paul Pukite, (1998, ISBN 978-0-7803-3482), William J. Stewart, (1994, ISBN: 0-691-03699-3).
