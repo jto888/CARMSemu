@@ -126,7 +126,9 @@ This file is not intended to be unzipped in Windows as you might expect. Rather
 this is the file to install into R from the console menu item
 Packages-\>”Install package(s) from local files..” Assuming package ‘diagram’
 has been installed, this installation should be complete and following
-demonstrations will run.
+demonstrations will run. (For Linux or macOS users the installation file is of
+the form CARMS_x.x.x.tar.gz) at this time there is no compilation required to
+install the package.
 
  
 
