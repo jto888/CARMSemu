@@ -72,17 +72,66 @@ queue. Finally, it is possible for the cpu to exhaust the job queue at state 4.
 Since the 2 I/O units are available at state 4, refilling of job slots proceeds
 and so there will be expected steady state performance over time.
 
- 
-
 This script now calls on the Runge-Kutta integration algorithm to resolve the
-system
-
-of ordinary differential equations for this model.
-
- 
+system of ordinary differential equations for this model.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/percpuio.R")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ![](images/percpuio.jpg)
+
+Package development and diagram building.
+-----------------------------------------
+
+Up to this point example scripts have been executable on an R Console without
+any package installations. These scripts have demonstrated back end calculation
+capabilities and rudimentary graphical response to results.
+
+One of the key characteristics of the CARMS application is the user preparation
+of Markov diagrams defining the model that will eventually be simulated. In the
+case of the original CARMS application the user involvement was intended to be
+interactive with a graphical screen. For this R emulation a different approach
+is to be utilized.
+
+In R (at least initially) it is expected that the graphical diagram capabilities
+of package ‘diagram’ will be used. In order to demonstrate diagramming examples
+a new user to R would have to install package diagram into their R system. While
+this may still be necessary in all cases it will also be helpful for the
+prospective user to install the development versions of the CARMS package.
+
+### Installing package diagram
+
+I must admit that this description assumes a user installation on Windows
+(currently Windows 10 and 11 are common). Upon installation of R to these
+operating systems a graphical user interface is provided called the R Console
+(which is almost as terse as the old DOS environment). Unix, Linux  and macOS
+users are most likely more sophisticated and will install R along with helper
+software such as R Studio, where an R Console is also present.
+
+Since package ‘diagram’ is a long established member on the CRAN repository it
+can be simply installed by selecting the console menu items Packages-\>Install
+Package(s) at which time a mirror must be selected. (O-Cloud at the top of the
+list always works best for me.) Then scroll down to ‘diagram’ and enter.
+
+### Installing development package CARMS
+
+Since the CARMS package is currently at its most formative stage, in order to
+experience examples for the formation of graphical Markov diagrams it will be
+necessary to install the development package of CARMS contained in this GitHub
+repository.
+
+The package file for installation on Windows is in the form of CARMS_x.x.x.zip.
+This file is not intended to be unzipped in Windows as you might expect. Rather
+this is the file to install into R from the console menu item
+Packages-\>”Install package(s) from local files..” Assuming package ‘diagram’
+has been installed, this installation should be complete and following
+demonstrations will run.
+
+ 
+
+ 
+
+ 
+
+ 
