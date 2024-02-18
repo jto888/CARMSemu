@@ -52,7 +52,8 @@ carms.arrow<- function(x, from, to, rate, label="",...) {
 	}		
 	x$arrow[[i]] <- list()		
 	x$arrow[[i]]$tt_vec<-c(from, to, trate)		
-			
+	x$arrow[[i]]$label<-label
+		
 			
 	# arrow options are set on each state, or uniformly in diagram		
 			
