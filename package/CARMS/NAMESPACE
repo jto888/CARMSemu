@@ -16,9 +16,11 @@ export(
 	carms.make,
 	carms.state,
 	carms.base,	
-#	carms.arrow,
+	carms.arrow,
 #	diagram.carms,
 #	ChainedSimulation,
+#	RungeKutta,
+#	BackDifferential,
 #	plot.carms
 diagram.carms
 )
