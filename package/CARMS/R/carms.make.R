@@ -24,11 +24,11 @@
 
 
 
-carms.make<-function(title, diagram_grid=c(11,11),...) {			
+carms.make<-function(title, diagram_grid=c(11,12),...) {			
 	obj<-list()		
 	obj$title <- title		
-	# this color palate should be alterable with option input through dots
-	# however this has not yet been implemented.
+	# this color palate should be alterable with option input through dots		
+	# however this has not yet been implemented.		
 	# in near term this should be a 32 item list, with 16 colors replicated		
 	obj$colors <- c("red4","lightseagreen","darkkhaki","navyblue","darkorchid3","turquoise4", "gray75","lightgreen")		
 			

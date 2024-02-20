@@ -25,47 +25,73 @@
 
 
 
-diagram.carms<-function(x) {
-	# need to test that x is a carms object among perhaps other validations					
-	if(!is(x,"carms")){					
-		stop("x  argument is not of class  carms ")				
-	}
-	if(is.null(x$state)) stop("no states defined in carms object")
-	
+diagram.carms<-function(x, text.size=0.7, shadow=TRUE ) {					
+	# need to test that x is a carms object among perhaps other validations				
+	if(!is(x,"carms")){				
+		stop("x  argument is not of class  carms ")			
+	}				
+	if(is.null(x$state)) stop("no states defined in carms object")				
+					
 	nstates<-length(x$state)				
 	M<-matrix(0,nrow=nstates, ncol=nstates)				
 					
-				
-	pos<-x$state[[1]]$pos			
-	name_vec<-x$state[[1]]$name			
-	box.lwd<-x$state[[1]]$op$lwd			
-	cex.txt<-x$state[[1]]$op$cex.txt			
-	box.size<-x$state[[1]]$op$box.size			
-	box.type<-x$state[[1]]$op$box.type			
-	box.prop<-x$state[[1]]$op$box.prop			
-				
-	if(nstates>1) {			
+	# set single option defaults				
+	box.lwd <- 2				
+	box.type <- "ellipse"				
+	self.lwd <- 0		# try not to show self arrow		
+	shadow.size <- 0.01				
+	if(shadow==FALSE) shadow.size<-0				
+					
+					
+					
+	pos<-x$state[[1]]$pos				
+	name_vec<-x$state[[1]]$name				
+					
+	# box.size and box.prop are no longer listed as options ($op)				
+	box.size<-x$state[[1]]$box.size				
+					
+	box.prop<-x$state[[1]]$box.prop				
+					
+	if(nstates>1) {				
 		for(state in 2:nstates) {			
-			pos<-rbind(pos, x$state[[state]]$pos)
-			# names is a reserved label in R
+			pos<-rbind(pos, x$state[[state]]$pos)		
+			# names is a reserved label in R		
 			name_vec<-c(name_vec, x$state[[state]]$name)		
-			box.lwd<-c(box.lwd, x$state[[state]]$op$lwd)		
-			cex.txt<-c(cex.txt, x$state[[state]]$op$cex.txt)		
-			box.size<-c(box.size, x$state[[state]]$op$box.size)		
-			box.type<-c(box.type, x$state[[state]]$op$box.type)		
-			box.prop<-c(box.prop, x$state[[state]]$op$box.prop)		
+					
+					
+			box.size<-c(box.size, x$state[[state]]$box.size)		
+					
+			box.prop<-c(box.prop, x$state[[state]]$box.prop)		
 		}			
 	}				
-	# transition arrows now need to be established				
+					
+	if(!is.null(x$arrows)) {				
+		# transition arrows now need to be established			
+		for(ar in 1:length(x$arrows$arrow)) {			
+			M[x$arrows$arrow[[ar]]$tt_vec[2], x$arrows$arrow[[ar]]$tt_vec[1]]<-x$arrows$arrow[[ar]]$label		
+					
+		}			
+					
+		# previously thought of as options, now direct members of x$arrows			
+		curve<-x$arrows$curve			
+		arr.pos <- x$arrows$arr.pos			
+		# hopefully dtext can be in matrix form here			
 					
 					
-	# diagram::plotmat should be imported to CARMS				
-	#require(diagram)				
-					
-	# plot just the states (because arrows have not yet been defined)				
-	if(is.null(x$arrow)) {				
-	plotmat(M, pos, name=name_vec, lwd=1, latex=TRUE,				
-		box.lwd=box.lwd, cex.txt=cex.txt, box.size=box.size,			
-		box.type=box.type, box.prop=box.prop)			
 	}				
+					
+
+					
+# new plotmat call with arrows					
+	plotmat(M, pos, name=name_vec, lwd=2, latex=TRUE,				
+		box.lwd=box.lwd, box.size=box.size,			
+		box.type=box.type, box.prop=box.prop,			
+		cex=text.size, self.lwd=self.lwd,			
+		shadow.size=shadow.size, curve=curve			
+					
+		)			
+					
+					
 }					
+					
+diagram <- diagram.carms
