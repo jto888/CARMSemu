@@ -25,73 +25,80 @@
 
 
 
-diagram.carms<-function(x, text.size=0.7, shadow=TRUE ) {					
-	# need to test that x is a carms object among perhaps other validations				
-	if(!is(x,"carms")){				
-		stop("x  argument is not of class  carms ")			
-	}				
-	if(is.null(x$state)) stop("no states defined in carms object")				
-					
-	nstates<-length(x$state)				
-	M<-matrix(0,nrow=nstates, ncol=nstates)				
-					
-	# set single option defaults				
-	box.lwd <- 2				
-	box.type <- "ellipse"				
-	self.lwd <- 0		# try not to show self arrow		
-	shadow.size <- 0.01				
-	if(shadow==FALSE) shadow.size<-0				
-					
-					
-					
-	pos<-x$state[[1]]$pos				
-	name_vec<-x$state[[1]]$name				
-					
-	# box.size and box.prop are no longer listed as options ($op)				
-	box.size<-x$state[[1]]$box.size				
-					
-	box.prop<-x$state[[1]]$box.prop				
-					
-	if(nstates>1) {				
-		for(state in 2:nstates) {			
-			pos<-rbind(pos, x$state[[state]]$pos)		
-			# names is a reserved label in R		
-			name_vec<-c(name_vec, x$state[[state]]$name)		
-					
-					
-			box.size<-c(box.size, x$state[[state]]$box.size)		
-					
-			box.prop<-c(box.prop, x$state[[state]]$box.prop)		
-		}			
-	}				
-					
-	if(!is.null(x$arrows)) {				
-		# transition arrows now need to be established			
-		for(ar in 1:length(x$arrows$arrow)) {			
-			M[x$arrows$arrow[[ar]]$tt_vec[2], x$arrows$arrow[[ar]]$tt_vec[1]]<-x$arrows$arrow[[ar]]$label		
-					
-		}			
-					
-		# previously thought of as options, now direct members of x$arrows			
-		curve<-x$arrows$curve			
-		arr.pos <- x$arrows$arr.pos			
-		# hopefully dtext can be in matrix form here			
-					
-					
-	}				
-					
-
-					
-# new plotmat call with arrows					
-	plotmat(M, pos, name=name_vec, lwd=2, latex=TRUE,				
-		box.lwd=box.lwd, box.size=box.size,			
-		box.type=box.type, box.prop=box.prop,			
-		cex=text.size, self.lwd=self.lwd,			
-		shadow.size=shadow.size, curve=curve			
-					
-		)			
-					
-					
-}					
+diagram.carms<-function(x, text.size=0.7, rate.text.y.shift=0.5,shadow=TRUE ) {				
+	# need to test that x is a carms object among perhaps other validations			
+	if(!is(x,"carms")){			
+		stop("x  argument is not of class  carms ")		
+	}			
+	if(is.null(x$state)) stop("no states defined in carms object")			
+				
+	nstates<-length(x$state)			
+	M<-matrix(0,nrow=nstates, ncol=nstates)			
+				
+	# set single option defaults			
+	box.lwd <- 2			
+	box.type <- "ellipse"			
+	self.lwd <- 0.001		# try not to show self arrow	
+	shadow.size <- 0.01			
+	if(shadow==FALSE) shadow.size<-0			
+	dtext <- (-1)*rate.text.y.shift			
+	cex<-text.size			
+				
+	pos<-x$state[[1]]$pos			
+	name_vec<-x$state[[1]]$name			
+				
+	# box.size and box.prop are no longer listed as options ($op)			
+	box.size<-x$state[[1]]$box.size			
+				
+	box.prop<-x$state[[1]]$box.prop			
+				
+	if(nstates>1) {			
+		for(state in 2:nstates) {		
+			pos<-rbind(pos, x$state[[state]]$pos)	
+			# names is a reserved label in R	
+			name_vec<-c(name_vec, x$state[[state]]$name)	
+				
+				
+			box.size<-c(box.size, x$state[[state]]$box.size)	
+				
+			box.prop<-c(box.prop, x$state[[state]]$box.prop)	
+		}		
+	}			
+				
+	if(!is.null(x$arrows)) {			
+		# transition arrows now need to be established		
+		for(ar in 1:length(x$arrows$arrow)) {		
+			M[x$arrows$arrow[[ar]]$tt_vec[2], x$arrows$arrow[[ar]]$tt_vec[1]]<-x$arrows$arrow[[ar]]$label	
+				
+		}		
+				
+		# previously thought of as options, now direct members of x$arrows		
+		curve<-x$arrows$curve		
+		arr.pos <- x$arrows$arr.pos		
+		arr.lcol <- x$arrows$arr.lcol		
+		arr.type <- x$arrows$arr.type		
+				
+	}			
+				
+				
+	require(diagram)			
+				
+				
+# new plotmat call with arrows				
+	plotmat(M, pos, name=name_vec, lwd=2, latex=TRUE,			
+		box.lwd=box.lwd, box.size=box.size,		
+		box.type=box.type, box.prop=box.prop,		
+		cex=cex, cex.txt=cex*9/7, self.cex=cex*14/7, self.lwd=self.lwd,		
+		dtext=dtext, arr.pos=arr.pos,		
+		self.shiftx=-.12,		
+		self.shifty=.12,		
+		arr.lcol=arr.lcol,		
+		arr.type=arr.type,		
+		shadow.size=shadow.size, curve=curve		
+		)		
+				
+				
+}				
+				
 					
 diagram <- diagram.carms

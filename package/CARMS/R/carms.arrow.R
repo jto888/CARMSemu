@@ -23,54 +23,68 @@
 #
 
 
-carms.arrow<- function(x, from, to, rate, curve=0.2, arrow.position=0.5,label="") {					
-	# need to test that x is a carms object among perhaps other validations				
-	if(!is(x,"carms")){				
-		stop("x  argument is not of class  carms ")			
-	}				
-					
-	# need to establish the transition table vector for this arrow				
-	if(is.character(rate)) {				
-		trate<-eval(parse(text=paste(rate)))			
-		if(!is.numeric(trate)) warn("transition rate has not been established numerically")			
-	}else{				
-		if(is.numeric(rate)) {			
-			trate<-rate		
-		}else{			
-			warn( "transition rate has not been interpreted")		
-		}			
-	}				
-					
-					
-	# establish the arrow element, or append to it				
-	    if(is.null(x$arrows)){				
-	        ## Creating the first arrow in the carms object...")				
-		        x$arrows <- list()			
-		x$arrows$narrows <- 1			
-					
-	# arrow options individually set for each arrow are in to_from matrix form for each option				
-	# blank option matrices are created here by name to be filled in  below this 'declaration' block				
-		nstates<-length(x$state)			
-		x$arrows$curve<-matrix(nrow=nstates, ncol=nstates, byrow = TRUE, data = 0)			
-		x$arrows$arr.pos<-matrix(nrow=nstates, ncol=nstates, byrow = TRUE, data = 0)			
-	# likely to add dtext(if it can be a matrix) here				
-					
-	    }else{				
-	        ## Appending a new arrow to arrows carms object...")				
-		x$arrows$narrows <- x$arrows$narrows +1			
-	    }				
-					
-	#  modify the curve matrix for this current arrow entry 				
-	x$arrows$curve[to, from] <- curve				
-	x$arrows$arr.pos[to, from] <- arrow.position				
-					
-	# now save a list of attributes for this arrow				
-	x$arrows$arrow[[x$arrows$narrows]]<- list()				
-					
-	x$arrows$arrow[[x$arrows$narrows]]$tt_vec<-c(from, to, trate)				
-	x$arrows$arrow[[x$arrows$narrows]]$label<-label				
-					
-					
-					
-	x		 		
-}					
+carms.arrow<- function(x, from, to, rate, arc=0.35, arrow.position=0.5, label="") {				
+	# need to test that x is a carms object among perhaps other validations			
+	if(!is(x,"carms")){			
+		stop("x  argument is not of class  carms ")		
+	}			
+				
+	# need to establish the transition table vector for this arrow			
+	if(is.character(rate)) {			
+		trate<-eval(parse(text=paste(rate)))		
+		if(!is.numeric(trate)) warn("transition rate has not been established numerically")		
+	}else{			
+		if(is.numeric(rate)) {		
+			trate<-rate	
+		}else{		
+			warn( "transition rate has not been interpreted")	
+		}		
+	}			
+				
+	arr.lcol <- "black"			
+	arr.type <-"curved"			
+	if(from==to) {			
+		arr.lcol <- "white"		
+		arr.type <-"none"		
+	}			
+				
+				
+				
+	# establish the arrow element, or append to it			
+	    if(is.null(x$arrows)){			
+	        ## Creating the first arrow in the carms object...")			
+		        x$arrows <- list()		
+		x$arrows$narrows <- 1		
+				
+	# arrow options individually set for each arrow are in to_from matrix form for each option			
+	# blank option matrices are created here by name to be filled in  below this 'declaration' block			
+		nstates<-length(x$state)		
+		x$arrows$curve<-matrix(nrow=nstates, ncol=nstates, byrow = TRUE, data = 0)		
+		x$arrows$arr.pos<-matrix(nrow=nstates, ncol=nstates, byrow = TRUE, data = 0)		
+		x$arrows$arr.type<-matrix(nrow=nstates, ncol=nstates, byrow = TRUE, data = 0)		
+		x$arrows$arr.lcol<-matrix(nrow=nstates, ncol=nstates, byrow = TRUE, data = 0)		
+				
+	    }else{			
+	        ## Appending a new arrow to arrows carms object...")			
+		x$arrows$narrows <- x$arrows$narrows +1		
+	    }			
+				
+	#  modify the curve matrix for this current arrow entry 			
+	x$arrows$curve[to, from] <- (-1)*arc			
+	x$arrows$arr.pos[to, from] <- arrow.position			
+	x$arrows$arr.lcol[to, from] <- arr.lcol			
+	x$arrows$arr.type[to, from] <- arr.type			
+				
+				
+				
+	# now save a list of attributes for this arrow			
+	x$arrows$arrow[[x$arrows$narrows]]<- list()			
+				
+	x$arrows$arrow[[x$arrows$narrows]]$tt_vec<-c(from, to, trate)			
+	x$arrows$arrow[[x$arrows$narrows]]$label<-label			
+				
+				
+				
+	x		 	
+}				
+				
