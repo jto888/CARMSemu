@@ -81,21 +81,29 @@ diagram.carms<-function(x, text.size=0.7, rate.text.y.shift=0.5,shadow=TRUE ) {
 	}			
 				
 				
-	require(diagram)			
-				
-				
-# new plotmat call with arrows				
-	plotmat(M, pos, name=name_vec, lwd=2, latex=TRUE,			
-		box.lwd=box.lwd, box.size=box.size,		
-		box.type=box.type, box.prop=box.prop,		
-		cex=cex, cex.txt=cex*9/7, self.cex=cex*14/7, self.lwd=self.lwd,		
-		dtext=dtext, arr.pos=arr.pos,		
-		self.shiftx=-.12,		
-		self.shifty=.12,		
-		arr.lcol=arr.lcol,		
-		arr.type=arr.type,		
-		shadow.size=shadow.size, curve=curve		
-		)		
+		if(is.null(x$arrows)) {				
+	# plotmat call for states only, before arrows are defined					
+			plotmat(M, pos, name=name_vec, lwd=2, latex=TRUE,			
+				box.lwd=box.lwd, box.size=box.size,		
+				box.type=box.type, box.prop=box.prop,		
+				cex=cex, self.lwd=self.lwd,		
+				shadow.size=shadow.size		
+				)		
+		}else{				
+	# new plotmat call with arrows					
+			plotmat(M, pos, name=name_vec, lwd=2, latex=TRUE,			
+				box.lwd=box.lwd, box.size=box.size,		
+				box.type=box.type, box.prop=box.prop,		
+				cex=cex, cex.txt=cex*9/7, self.cex=cex*14/7, self.lwd=self.lwd,		
+				dtext=dtext, arr.pos=arr.pos,		
+				self.shiftx=-.12,		
+				self.shifty=.12,		
+				arr.lcol=arr.lcol,		
+				arr.type=arr.type,		
+				shadow.size=shadow.size, curve=curve		
+				)		
+		}				
+		
 				
 				
 }				
