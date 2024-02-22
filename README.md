@@ -81,8 +81,8 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/percpuio
 
 ![](images/percpuio.jpg)
 
-Package development and diagram building.
------------------------------------------
+CARMS object development and diagram building.
+----------------------------------------------
 
 Up to this point example scripts have been executable on an R Console without
 any package installations. These scripts have demonstrated back end calculation
@@ -94,18 +94,39 @@ case of the original CARMS application the user involvement was intended to be
 interactive with a graphical screen. For this R emulation a different approach
 is to be utilized.
 
-In R (at least initially) it is expected that the graphical diagram capabilities
-of package ‘diagram’ will be used. In order to demonstrate diagramming examples
-a new user to R would have to install package diagram into their R system. While
-this may still be necessary in all cases it will also be helpful for the
-prospective user to install the development versions of the CARMS package.
+In R it is expected that the graphical diagram capabilities of package ‘diagram’
+will be used. In order to demonstrate diagramming examples a new user to R would
+have to install package diagram into their R system.
+
+### CARMS object
+
+It has been said that “everything in R is an object”. In the case of this CARMS
+emulation the data defining each model is stored in a CARMS object. The CARMS
+object for any example is generated through a series of script lines not unlike
+the lines of original scripts contained in .mm files. The script lines are
+generated in turn through a series of functions that will form the basis of a
+CARMS package.
+
+For diagram development it is only required to define the states. Part of this
+definition is the placement and sizing of the state ellipse graphics on a
+canvas. In order to simplify the placement of state graphic elements a flexible
+grid system has been devised. The grid configuration is set in function
+carms.make along with a title designation. Each state can be positioned to be
+centered on a particular grid tile. The position for each state is defined by a
+vector of c(grid_column, grid_row) in a call to carms.state. After definition of
+states it is possible to call for the diagram to be drawn, such that alterations
+to the script lines can be made on a trial and error basis.
+
+ 
+
+ 
 
 ### Installing package diagram
 
 I must admit that this description assumes a user installation on Windows
 (currently Windows 10 and 11 are common). Upon installation of R to these
 operating systems a graphical user interface is provided called the R Console
-(which is almost as terse as the old DOS environment). Unix, Linux  and macOS
+(which is almost as terse as the old DOS environment). Unix, Linux and macOS
 users are most likely more sophisticated and will install R along with helper
 software such as R Studio, where an R Console is also present.
 
@@ -113,6 +134,14 @@ Since package ‘diagram’ is a long established member on the CRAN repository 
 can be simply installed by selecting the console menu items Packages-\>Install
 Package(s) at which time a mirror must be selected. (O-Cloud at the top of the
 list always works best for me.) Then scroll down to ‘diagram’ and enter.
+
+ 
+
+ 
+
+ 
+
+ 
 
 ### Installing development package CARMS
 
@@ -130,7 +159,18 @@ demonstrations will run. (For Linux or macOS users the installation file is of
 the form CARMS_x.x.x.tar.gz) at this time there is no compilation required to
 install the package.
 
- 
+As an example, following are the script lines that place the 3 states in example
+Pa2Simpl.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+source(”https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carms.make.R")       source(”https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carms.state.R")
+
+    
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
  
 
