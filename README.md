@@ -166,7 +166,7 @@ Pa2Simpl.
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carms.make.R")
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carms.state.R")
 
-Pa2Simpl<- carms.make( title = "Parallel     Same failure rates")
+Pa2Simpl<- carms.make()
   
 PaSimpl<- carms.state(PaSimpl, prob=1, name="P1", size=7, position=c(2,6))
 PaSimpl<- carms.state(PaSimpl, prob=0, name="P1", size=7, position=c(5,6))
