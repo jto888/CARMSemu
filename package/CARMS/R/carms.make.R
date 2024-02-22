@@ -24,7 +24,7 @@
 
 
 
-carms.make<-function(title, diagram_grid=c(11,12),...) {			
+carms.make<-function(title="", diagram_grid=c(11,12),...) {			
 	obj<-list()		
 	obj$title <- title		
 	# this color palate should be alterable with option input through dots		
