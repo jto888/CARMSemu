@@ -163,7 +163,7 @@ As an example, following are the script lines that place the 3 states in example
 Pa2Simpl.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carm
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carm.make.R")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
  
