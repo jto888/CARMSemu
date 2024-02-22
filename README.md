@@ -168,7 +168,8 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/c
 
 # usage carms.make<-function(title, diagram_grid=c(11,12),...) {
 Pa2Simpl<- carms.make( title = "Parallel     Same failure rates")
-#usage carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, plot.color=NULL,  description="") {  
+#usage carms.state<-function(x, prob,  name, size=4, h2w=21/24, 
+#position, plot.color=NULL,  description="") {  
 PaSimpl<- carms.state(PaSimpl, prob=1, name="P1", size=7, position=c(2,6))
 PaSimpl<- carms.state(PaSimpl, prob=0, name="P1", size=7, position=c(5,6))
 PaSimpl<- carms.state(PaSimpl, prob=0, name="P1", size=7, position=c(8,6))
