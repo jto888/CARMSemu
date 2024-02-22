@@ -147,9 +147,9 @@ arguments, including defaults, could be understood.
  
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# usage carms.make<-function(title, diagram_grid=c(11,12))
+# usage carms.make(title, diagram_grid=c(11,12))
 Pa2Simpl<- carms.make( title = "Parallel     Same failure rates")
-# usage carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, description="")
+# usage carms.state(x, prob,  name, size=4, h2w=21/24, position, description="")
 Pa2Simpl<- carms.state(Pa2Simpl, prob=1, name="P1", size=7, position=c(2,6))
 Pa2Simpl<- carms.state(Pa2Simpl, prob=0, name="P1", size=7, position=c(5,6))
 Pa2Simpl<- carms.state(Pa2Simpl, prob=0, name="P1", size=7, position=c(8,6))
@@ -176,10 +176,43 @@ diagram(Pa2Simpl)
 
 It is possible and even likely that a user will alter values in the position
 argument to move the state ovals to pleasing orientation. In this case the grid
-row of 6 places the state ovals in the vertical center of the canvas. One could
+row 6 places the state ovals in the vertical center of the canvas. One could
 shift the states to the right by adding 1 or 2 to the grid column entries for
 each state.
 
  
 
+The R graphics window that has been created to display this diagram is able to
+be resized, copied to the clipboard, and saved to file. For the present, the
+canvas is larger than was needed. This will be fine for small models, however
+larger graphics device sizes are possible to create when needed. For example
+here is are the script lines for the SaGyro example:
+
  
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SaGyro<-carms.make(title="Gyro Failure   Simulation", diagram_grid=c(11,12) )
+SaGyro<-carms.state(SaGyro, prob=1, name="All Operating",size=2.2,h2w=2.3,  position=c(2,6))
+SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, full",size=4.5,  h2w=.4, position=c(4,3))
+SaGyro<-carms.state(SaGyro, prob=0, name="2 gyros, full",size=4.5,  h2w=.4, position=c(4,9))
+SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, full",size=4.5,  h2w=.4, position=c(6,6))
+SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, full",size=4.5,  h2w=.4, position=c(8,3))
+SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, half",size=4.5,  h2w=.4, position=c(8,9))
+SaGyro<-carms.state(SaGyro, prob=0, name="failed state",size=3, h2w=1.7, position=c(11,6))
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The graphics device is altered by a further definition before displaying the
+diagram
+
+ 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+dev.new(width=15, height=8, unit="in")
+diagram.carms(SaGyro, shadow=FALSE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ 
+
+This larger diagram can be resized to suit other means of display.
+
+![](images/SaGyro_diagram1.jpg)
