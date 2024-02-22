@@ -98,6 +98,22 @@ In R it is expected that the graphical diagram capabilities of package ‘diagra
 will be used. In order to demonstrate diagramming examples a new user to R would
 have to install package diagram into their R system.
 
+### Installing package diagram
+
+Since package ‘diagram’ is a long established member on the CRAN repository it
+can be simply installed by copying the following line into the R Console:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+install.packages("diagram")
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You will have been asked to select a CRAN mirror --- the first selection always
+works for me.
+
+This package installation is required only once on a freshly installed R system.
+
+ 
+
 ### CARMS object
 
 It has been said that “everything in R is an object”. In the case of this CARMS
@@ -107,66 +123,77 @@ the lines of original scripts contained in .mm files. The script lines are
 generated in turn through a series of functions that will form the basis of a
 CARMS package.
 
-For diagram development it is only required to define the states. Part of this
-definition is the placement and sizing of the state ellipse graphics on a
-canvas. In order to simplify the placement of state graphic elements a flexible
-grid system has been devised. The grid configuration is set in function
-carms.make along with a title designation. Each state can be positioned to be
-centered on a particular grid tile. The position for each state is defined by a
-vector of c(grid_column, grid_row) in a call to carms.state. After definition of
-states it is possible to call for the diagram to be drawn, such that alterations
-to the script lines can be made on a trial and error basis.
+For initial diagram development it is of primary interest to define the states.
+Part of this definition is the placement and sizing of the state ellipse
+graphics on a canvas. In order to simplify the placement of state graphic
+elements a flexible grid system has been devised. The grid configuration is set
+in function carms.make. Each state can be positioned to be centered on a
+particular grid tile. The position for each state is defined by a vector of
+c(grid_column, grid_row) in a call to carms.state. After definition of states it
+is possible to call for the diagram to be drawn, such that alterations to the
+script lines can be made on a trial and error basis.
 
- 
-
- 
-
-### Installing package diagram
-
-I must admit that this description assumes a user installation on Windows
-(currently Windows 10 and 11 are common). Upon installation of R to these
-operating systems a graphical user interface is provided called the R Console
-(which is almost as terse as the old DOS environment). Unix, Linux and macOS
-users are most likely more sophisticated and will install R along with helper
-software such as R Studio, where an R Console is also present.
-
-Since package ‘diagram’ is a long established member on the CRAN repository it
-can be simply installed by selecting the console menu items Packages-\>Install
-Package(s) at which time a mirror must be selected. (O-Cloud at the top of the
-list always works best for me.) Then scroll down to ‘diagram’ and enter.
-
- 
-
- 
-
- 
-
- 
-
-### Installing development package CARMS
-
-Since the CARMS package is currently at its most formative stage, in order to
-experience examples for the formation of graphical Markov diagrams it will be
-necessary to install the development package of CARMS contained in this GitHub
-repository.
-
-The package file for installation on Windows is in the form of CARMS_x.x.x.zip.
-This file is not intended to be unzipped in Windows as you might expect. Rather
-this is the file to install into R from the console menu item
-Packages-\>”Install package(s) from local files..” Assuming package ‘diagram’
-has been installed, this installation should be complete and following
-demonstrations will run. (For Linux or macOS users the installation file is of
-the form CARMS_x.x.x.tar.gz) at this time there is no compilation required to
-install the package.
-
-As an example, following are the script lines that place the 3 states in example
-Pa2Simpl.
+First it is necessary to load the CARMS emulation functions into the current R
+session.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carm.make.R")
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/LoadCARMSemulationFunctions.R")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+The script lines for creating the first simple two component parallel example
+follows, the leading hash mark denotes comments and were included so that the
+arguments, including defaults, could be understood.
+
  
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# usage carms.make<-function(title, diagram_grid=c(11,12))
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Pa2Simpl<- carms.make( title = "Parallel     Same failure rates")
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# usage carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, description="")
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Pa2Simpl<- carms.state(Pa2Simpl, prob=1, name="P1", size=7, position=c(2,6))
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Pa2Simpl<- carms.state(Pa2Simpl, prob=0, name="P1", size=7, position=c(5,6))
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Pa2Simpl<- carms.state(Pa2Simpl, prob=0, name="P1", size=7, position=c(8,6))
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is now possible to view the way the Pa2Simpl object has been stored in R by
+simply calling for it:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Pa2Simpl
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You will not be troubled here with a view of what has been just delivered, but
+suffice to say that all the information is available to further functions in the
+CARMS emulation.
+
+Now to view the formative diagram enter
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+diagram(Pa2Simpl)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+![](images/Pa2Simpl_diagram1.jpeg)
+
+It is possible and even likely that a user will alter values in the position
+argument to move the state ovals to pleasing orientation. In this case the grid
+row of 6 places the state ovals in the vertical center of the canvas. One could
+shift the states to the right by adding 1 or 2 to the grid column entries for
+each state.
 
  
 

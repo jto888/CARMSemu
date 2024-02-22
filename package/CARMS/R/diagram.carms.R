@@ -80,7 +80,8 @@ diagram.carms<-function(x, text.size=0.7, rate.text.y.shift=0.5,shadow=TRUE ) {
 				
 	}			
 				
-				
+	require(diagram)
+	
 		if(is.null(x$arrows)) {				
 	# plotmat call for states only, before arrows are defined					
 			plotmat(M, pos, name=name_vec, lwd=2, latex=TRUE,			
