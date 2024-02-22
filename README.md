@@ -163,14 +163,14 @@ As an example, following are the script lines that place the 3 states in example
 Pa2Simpl.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carms.make.R")
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carms.state.R")
-
-Pa2Simpl<- carms.make()
-  
-PaSimpl<- carms.state(PaSimpl, prob=1, name="P1", size=7, position=c(2,6))
-PaSimpl<- carms.state(PaSimpl, prob=0, name="P1", size=7, position=c(5,6))
-PaSimpl<- carms.state(PaSimpl, prob=0, name="P1", size=7, position=c(8,6))
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carmsource("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carms.make.R")  
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carms.state.R")  
+# usage carms.make<-function(title, diagram_grid=c(11,12),...) {
+Pa2Simpl<- carms.make( title = "Parallel     Same failure rates")
+#usage carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, plot.color=NULL,  description="") {  
+Pa2Simpl<- carms.state(Pa2Simpl, prob=1, name="P1", size=7, position=c(2,6))
+Pa2Simpl<- carms.state(Pa2Simpl, prob=0, name="P1", size=7, position=c(5,6))
+Pa2Simpl<- carms.state(Pa2Simpl, prob=0, name="P1", size=7, position=c(8,6))
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
