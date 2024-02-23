@@ -49,8 +49,8 @@ carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, Pfunction=NUL
 	box.size <- size/100   		
 	box.prop <- h2w		
 	# graph plot colot for this state		
-	if(!is.null(plot.color)) {		
-		col <-plot.color	
+	if(!is.null(plot.line.color)) {		
+		col <-plot.line.color	
 	}else{		
 		col <- x$colors[i]	
 	}		
