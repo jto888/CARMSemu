@@ -31,12 +31,9 @@ carms.make<-function(title=NULL, diagram_grid=c(11,12),...) {
 	# however this has not yet been implemented.		
 	# in near term this should be a 32 item list, with 16 colors replicated		
 	obj$colors <- c("red4","lightseagreen","darkkhaki","navyblue","darkorchid3","turquoise4", "gray75","lightgreen")		
-			
-	# by default there are no defined states		
-	obj$defined_states<-FALSE		
-			
-			
-			
+		
+	# defined states will create a Pfunction list item in the main carms object
+						
 	# it could be tested that this is a 2 element vector		
 	obj$diagram_grid=diagram_grid		
 			

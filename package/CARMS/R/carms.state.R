@@ -24,7 +24,7 @@
 
 
 
-carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, plot.color=NULL,  description="") {			
+carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, Pfunction=NULL, plot.line.color=NULL,  description="") {			
 	# need to test that x is a carms object among perhaps other validations		
 	if(!is(x,"carms")){		
 		stop("x  argument is not of class  carms ")	
@@ -66,14 +66,21 @@ carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, plot.color=NU
 	# x_positions and y_positions are defined in carms.make		
 	x$state[[i]]$pos<-c(x$x_positions[position[1]], x$y_positions[position[2]])		
 			
-			
-			
-	#if(!is.null(Pfunction)) {		
-		 # expect a lot of validation on this Pfunction	
-		# it must be a string of Pxx values separated  + perhaps or 	
-		# numbers separated by colon or sum and parentheses, or number multiplier >-1 <1 	
-		# when all validations are done x$defined_states=TRUE	
-	#}		
+						
+	if(!is.null(Pfunction)) {	
+		 # It will be up to the analyst to provide a valid function
+		# establish the Pfunction element, or append to it
+		    if(is.null(x$Pfunction)){
+		        ## Creating the first Pfunction in the carms object...")
+		        j <- 1
+		        x$Pfunction <- list()
+		    }else{
+		        ## Appending a new Pfunction to the existing carms object...")
+		        j <- length(x$Pfunction)+1
+		    }		
+		x$Pfunction[[j]]<-Pfunction		
+	}	
+	
 			
 	x		
 }			
