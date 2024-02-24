@@ -25,7 +25,7 @@
 
 
 
-diagram.carms<-function(x, text.size=0.7, rate.text.y.shift=0.5,shadow=TRUE ) {				
+diagram.carms<-function(x, text.size=0.7, rate.text.y.shift=0.7,shadow=FALSE ) {				
 	# need to test that x is a carms object among perhaps other validations			
 	if(!is(x,"carms")){			
 		stop("x  argument is not of class  carms ")		

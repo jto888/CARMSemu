@@ -1,28 +1,31 @@
-#ChainedSimulation
-# A first pass at simulating markov models for reliability.
-# This function emulates the Petri Net solution provided in CARMS
-# It is intended that this function will be converted to C++ for improved performance
 
-# David J. Silkworth 2-1-2024
-
-ChainedSimulation<-function(states, transition_table, simulation_control) {							
-	#unpack the control_list						
-		steps<-simulation_control$steps					
-		cycles<-simulation_control$cycles					
-		simhistory=simulation_control$simhistory					
-							
-	# derivations from key input						
-		nstates<-length(states)					
-		stepsize<-simhistory/steps					
-		istate<-which(states == 1)					
-		outmat<-matrix(rep(0,nstates*steps),steps,nstates)					
-	
-	# this would never have worked without This
-	tt<-transition_table
-							
-	# simulation code						
-	for(cy in 1:cycles) {						
-							
+StochasticChain<-function(states, tt, simcontrol)  { 								
+								
+	# This is where the tt dataframe will be separated into							
+	# a stacked integer vector from tt$from and tt$to							
+	# and a stacked double vector from tt$rate							
+								
+								
+	################## this is the place to go to C++ #####################							
+								
+								
+	#unpack the control_list							
+		steps<-simcontrol$steps						
+		cycles<-simcontrol$cycles						
+		simhistory=simcontrol$simhistory						
+								
+	# derivations from key input							
+		nstates<-length(states)						
+		stepsize<-simhistory/steps						
+		istate<-which(states == 1)						
+		outmat<-matrix(rep(0,nstates*steps),steps,nstates)						
+								
+								
+								
+								
+		# simulation code						
+		for(cy in 1:cycles) {						
+								
 		for(st in istate) {						
 								
 			time<-0					
@@ -92,8 +95,18 @@ ChainedSimulation<-function(states, transition_table, simulation_control) {
 			}  # next step					
 								
 		} # next initial state (if it exists)						
-							
-	} # next cycle						
-							
-	outmat						
-}							
+								
+		} # next cycle						
+								
+	################## this is the place to return from C++ #####################							
+								
+		# outmat is the return object from C++						
+		# These final steps are just as easy to do in R						
+			nstates<-length(states)					
+			stepsize<-simhistory/steps					
+			outmat<-outmat/(stepsize*cycles)					
+			initial_state_probabilities<-matrix(states, nrow=1, ncol=nstates)					
+			outmat<-rbind(initial_state_probabilities, outmat)					
+								
+	outmat							
+}								

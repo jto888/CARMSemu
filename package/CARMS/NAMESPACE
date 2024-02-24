@@ -18,10 +18,11 @@ export(
 	carms.base,	
 	carms.arrow,
 	diagram.carms,
-#	ChainedSimulation,
+	simulate.carms,
+#	StochasticChain,
 #	RungeKutta,
-#	BackDifferential,
-#	plot.carms
+#	BackwardDifference,
+#	plot.carms,
 diagram
 )
 #S3method(plot, carms) 
