@@ -25,5 +25,5 @@ export(
 	plot.carms,
 diagram
 )
-#S3method(plot, carms) 
-#S3method(diagram, carms)
+S3method(plot, carms) 
+S3method(simulate, carms)

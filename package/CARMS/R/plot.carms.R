@@ -24,9 +24,9 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	Title<- x$title				
 	# define a subtitle with simulation information				
 	if(method=="rk"|| method=="bd") {				
-		sub<- paste0("method: ", method, "   steps: ",steps, "   history: ", history," ",units)			
+		sub<- paste0("method: ", method, "   steps: ",steps, "   time: ", history," ",units)			
 	}else{				
-		sub<-paste0("method: ", method, "   steps: ",steps, "   history: ", history," ",units, "   cycles: ", cycles)			
+		sub<-paste0("method: ", method, "   steps: ",steps, "  time: ", history," ",units, "   cycles: ", cycles)			
 	}				
 	xlab<- .simpleCap(x$time_units)				
 	ylab<- "Probability"				
@@ -34,7 +34,7 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	lwd<- 2				
 	P<- x$simulation$P				
 	nstates<-length(x$state)				
-					
+	bg<-"gray95"				
 					
 					
 	# should handle the dots here				
@@ -67,14 +67,19 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 					
 	# Generate the plot				
 	x_values<-seq(0,history, by=history/steps)				
-	#dev.new(width=5, height=4, unit="in")				
-					
+	dev.new(width=9, height=6, unit="in")				
+	 #par(mar=c(5,5,3,7), bg="gray98", xpd=FALSE)				
+	par(mar=c(5,5,3,7), bg=bg, xpd=FALSE)				
 	plot(x_values,x$simulation$P[,1], type="n",				
 	axes=FALSE, frame=TRUE,				
 	main=Title,				
 	sub=sub,				
 	xlab=xlab, ylab=ylab				
 	)				
+					
+	rect(par("usr")[1], par("usr")[3],				
+	     par("usr")[2], par("usr")[4],				
+	     col = "white") # Color				
 					
 	# define axes with ticks				
 	axis(1, small_x_ticks, labels=rep("", length(small_x_ticks)), tck=-0.01)				
@@ -89,8 +94,8 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	axis(4, large_y_ticks, labels=rep("", length(large_y_ticks)), tck=-0.03)				
 					
 	# draw the gridlines				
-	abline(v=large_x_ticks, col="grey")				
-	abline(h=large_y_ticks, col="grey")				
+	abline(v=large_x_ticks, col="grey", xpd=F)				
+	abline(h=large_y_ticks, col="grey", xpd=F)				
 					
 					
 					
@@ -114,7 +119,7 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 		cex<-c(cex, .8)			
 	}				
 					
-	legend("right", legend=le, col=colors[1:state], lty=lty, lwd=lwd, cex=cex, bg="white")				
+	legend("topright", inset=c(-.15,0), legend=le, col=colors[1:state], lty=lty, lwd=lwd, cex=cex, bg="white", xpd=T)				
 					
 					
 }					
