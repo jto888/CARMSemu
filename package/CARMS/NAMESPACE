@@ -22,7 +22,7 @@ export(
 #	StochasticChain,
 #	RungeKutta,
 #	BackwardDifference,
-#	plot.carms,
+	plot.carms,
 diagram
 )
 #S3method(plot, carms) 
