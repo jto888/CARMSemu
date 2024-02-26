@@ -30,8 +30,11 @@ carms.make<-function(title=NULL, diagram_grid=c(11,12),...) {
 	# this color palate should be alterable with option input through dots		
 	# however this has not yet been implemented.		
 	# in near term this should be a 32 item list, with 16 colors replicated		
-	obj$colors <- c("red4","lightseagreen","darkkhaki","navyblue","darkorchid3","turquoise4", "gray75","lightgreen")		
-		
+	#obj$colors <- c("red4","lightseagreen","darkkhaki","navyblue","darkorchid3","turquoise4", "gray75","lightgreen")		
+	obj$colors <- c("red4","forestgreen","burlywood4","navyblue","darkmagenta","turquoise4", "gray78","lightgreen",
+	"lightskyblue", "bisque", "gray62", "gray44","red", "green3", "yellow2", "black",
+	"red4","forestgreen","burlywood4","navyblue","darkmagenta","turquoise4", "gray78","lightgreen",
+	"lightskyblue", "bisque", "gray62", "gray44","red", "green3", "yellow2", "black")
 	# defined states will create a Pfunction list item in the main carms object
 						
 	# it could be tested that this is a 2 element vector		

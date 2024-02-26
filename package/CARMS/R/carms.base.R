@@ -1,9 +1,16 @@
 
-carms.base<-function(x, value, base_label=NULL, description="")  {		
+carms.base<-function(x, value, time_units=NULL, base_label=NULL, description="")  {		
 	# need to test that x is a carms object among perhaps other validations	
 	if(!is(x,"carms")){	
 		stop("x  argument is not of class  carms ")
-	}	
+	}
+	if(is.null(x$time_units) && is.null(time_units)) stop("time_units are required")		
+			
+	if(is.null(x$time_units)) {		
+		if(!is.character(time_units)) stop("time_units must be entered as a character string") 	
+		x$time_units<-time_units	
+	}		
+	
 	# establish the base element, or append to it	
 	    if(is.null(x$base)){	
 	        ## Creating the first base in the carms object...")	
