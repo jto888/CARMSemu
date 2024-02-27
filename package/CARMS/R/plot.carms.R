@@ -34,8 +34,8 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	lwd<- 3				
 	P<- x$simulation$P				
 	nstates<-length(x$state)				
-	bg<-"gray95"				
-					
+	bg<-"gray80"				
+	cex.lab<-1.5				
 					
 	# should handle the dots here				
 	# things that might be handled in the dots could be				
@@ -74,6 +74,7 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	axes=FALSE, frame=TRUE,				
 	main=Title,				
 	sub=sub,				
+	cex.lab=cex.lab,				
 	xlab=xlab, ylab=ylab				
 	)				
 					
@@ -94,8 +95,8 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	axis(4, large_y_ticks, labels=rep("", length(large_y_ticks)), tck=-0.03)				
 					
 	# draw the gridlines				
-	abline(v=large_x_ticks, col="grey", xpd=F)				
-	abline(h=large_y_ticks, col="grey", xpd=F)				
+	abline(v=large_x_ticks, col="grey", lwd=1, xpd=F)				
+	abline(h=large_y_ticks, col="grey", lwd=1, xpd=F)				
 					
 					
 					
@@ -119,7 +120,7 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 		cex<-c(cex, .8)			
 	}				
 					
-	legend("topright", inset=c(-.15,0), legend=le, col=colors[1:state], lty=lty, lwd=lwd, cex=cex, bg="white", xpd=T)				
+	legend("topright", inset=c(-.17,0), legend=le, col=colors[1:state], lty=lty, lwd=lwd, cex=cex, bg="white", xpd=T)				
 					
 					
 }					
