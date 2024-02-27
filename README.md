@@ -285,7 +285,7 @@ result of simulation into the object, so that it can be called on for displaying
 the plot.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-SaGyro<-simulate.carms(SaGyro, "bd", 100,100)
+SaGyro<-simulate.carms(SaGyro, "bd", 50,40)
 plot.carms(SaGyro)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
