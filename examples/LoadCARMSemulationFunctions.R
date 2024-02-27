@@ -3,3 +3,8 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/c
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carms.base.R")  
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/carms.arrow.R")  
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/diagram.carms.R")  
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/simulate.carms.R") 
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/BackwardDifference.R")
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/RungeKutta.R") 
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/StochasticChain.R") 
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/plot.carms.R") 

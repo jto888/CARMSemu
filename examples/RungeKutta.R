@@ -11,7 +11,7 @@
 
 
 
-RungeKutta<-function(states, tt, simcontrol)  {				
+RungeKutta1<-function(states, tt, simcontrol)  {				
 	# generate key parameters for Stewart's algorithm			
 		t<-simcontrol$simhistory		
 		h<-t/simcontrol$steps		

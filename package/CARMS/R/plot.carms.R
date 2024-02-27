@@ -31,7 +31,7 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	xlab<- .simpleCap(x$time_units)				
 	ylab<- "Probability"				
 	colors<- x$colors				
-	lwd<- 2				
+	lwd<- 3				
 	P<- x$simulation$P				
 	nstates<-length(x$state)				
 	bg<-"gray95"				

@@ -38,7 +38,7 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/RungeKut
 	simcontrol<-list(steps=steps, cycles=cycles, simhistory=simhistory)						
 							
 # Run the simulation
-	outmat<-RungeKutta(states, tt, simcontrol)
+	outmat<-RungeKutta1(states, tt, simcontrol)
 							
 #	outmat<-ChainedSimulation(states, tt, simcontrol)						
 #							
