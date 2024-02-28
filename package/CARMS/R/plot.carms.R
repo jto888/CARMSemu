@@ -73,7 +73,8 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	plot(x_values,x$simulation$P[,1], type="n",				
 	axes=FALSE, frame=TRUE,				
 	main=Title,				
-	sub=sub,				
+	sub=sub,
+	ylim=ylim,
 	cex.lab=cex.lab,				
 	xlab=xlab, ylab=ylab				
 	)				

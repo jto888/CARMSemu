@@ -69,9 +69,8 @@ carms.arrow<- function(x, from, to, rate, arc=0.35, arrow.position=0.5, label=""
 		x$arrows$narrows <- x$arrows$narrows +1		
 	    }			
 	
-	minus<- -1.0
 	#  modify the curve matrix for this current arrow entry 			
-	x$arrows$curve[to, from] <- minus*arc			
+	x$arrows$curve[to, from] <- (-1)*arc			
 	x$arrows$arr.pos[to, from] <- arrow.position			
 	x$arrows$arr.lcol[to, from] <- arr.lcol			
 	x$arrows$arr.type[to, from] <- arr.type			
