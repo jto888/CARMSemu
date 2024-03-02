@@ -36,7 +36,8 @@ simulate.carms<-function(x, method, simhistory, steps=20, cycles=1000) {
 	}		
 			
 	if(!is.null(x$Pfunction) )  {		
-		for(pf in 1:length(x$Pfunction) ) {	
+		for(pf in 1:length(x$Pfunction) ) {
+			t<-seq(0, simhistory, by=simhistory/steps)
 			eval(parse(text=x$Pfunction[[pf]]))
 		}	
 	}		
