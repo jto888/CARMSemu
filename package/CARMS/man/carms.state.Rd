@@ -5,7 +5,7 @@
     Modify an \code{"carms"} Object adding a state element
 }
 \description{
-    This function establishes a state
+    This function defines a state with attributes for diagram name, size, proportion and placement in a diagram.
 	}
 \usage{carms.state(x, prob,  name, size=4, h2w=21/24, position,
 		Pfunction=NULL, plot.line.color=NULL,  description="")
@@ -34,7 +34,7 @@
 		A proportion value for the state element often determined by trial and modification of diagram development. 
 	}
 	\item{Pfunction}{
-		A string defining a function providing for an alternative valuation typically accumulating the probabilty values of several other states after simulation.
+		A string defining a function providing for an alternative probability determination after simulation, typically accumulating the probabilty values of several other states.
 	}
 	\item{plot.line.color}{
 		A string providing for an override of the default color palatte designation for this particular state on the simulation plot.
@@ -46,7 +46,7 @@
 
 
 \value{
-	The	input object will be returned with the addition this state information in the \code{"$carms$states} list element.	
+	The	input object will be returned with the addition this state information in the \code{"carms$state"} list element.	
 }
 
 \references{
