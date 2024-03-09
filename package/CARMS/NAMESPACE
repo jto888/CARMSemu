@@ -2,11 +2,8 @@
 #useDynLib(CARMS, .registration=TRUE)
 importFrom(Rcpp, evalCpp)
 importFrom("graphics", "abline", "axis", "curve", "legend", "lines",
-		 "par", "plot", "plot.default", "points", "segments",
-		 "title", "layout", "layout.show")
-importFrom("stats", "approxfun", "na.omit",
-		 "pexp", "rexp", 
-		 "smooth.spline")
+		 "par", "plot", "plot.default", "points", "title")
+importFrom("stats", "rexp", "smooth.spline")
 importFrom("utils", "modifyList")
 importFrom("grDevices", "dev.new")
 importFrom("methods", "is")
