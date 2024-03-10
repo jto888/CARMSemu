@@ -5,7 +5,7 @@
     Generate a simulation of a carms object.
 }
 \description{
-    This function 
+    This function calls for the simulation on a completed carms object.
 	}
 \usage{
 	simulate.carms(x, method, simhistory, steps=20, cycles=1000)
