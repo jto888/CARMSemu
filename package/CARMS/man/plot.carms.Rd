@@ -20,9 +20,6 @@
 	\item{knots}{
 		An integer value of a fraction of simulation steps to use for determination of a smoothed spline.
 	}
-	\item{steps}{
-		An integer value for the number of intervals over the mission history to calculate the simulation.
-	}
 	\item{...}{
 		A list argument enabling modification of certain defaults (not yet implemented)
 	}	

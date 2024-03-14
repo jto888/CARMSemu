@@ -30,9 +30,6 @@
 	\item{position}{
 		A vector of (column, row) related to the diagram grid and often determined by trial and modification of diagram development. 
 	}
-	\item{h2w}{
-		A proportion value for the state element often determined by trial and modification of diagram development. 
-	}
 	\item{Pfunction}{
 		A string defining a function providing for an alternative probability determination after simulation, typically accumulating the probabilty values of several other states.
 	}

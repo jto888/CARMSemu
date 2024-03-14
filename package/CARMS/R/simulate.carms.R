@@ -58,3 +58,5 @@ simulate.carms<-function(x, method, simhistory, steps=20, cycles=1000) {
 			
 	x		
 }			
+# faking S3 overridintg (will mask stats::simulate
+simulate<-simulate.carms

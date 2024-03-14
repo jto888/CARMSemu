@@ -1,0 +1,17 @@
+carms.arrow             Modify an '"carms"' Object adding a transition
+                        as an arrow element
+carms.base              Modify an '"carms"' Object adding a base
+                        element
+carms.make              Create a 'carms' Object for continuous time
+                        Markov rate modeling
+carms.state             Modify an '"carms"' Object adding a state
+                        element
+diagram                 Deliver a Markov diagram display of a carms
+                        object.
+diagram.carms           Deliver a Markov diagram display of a carms
+                        object.
+matP                    Extract the probability matrix from a completed
+                        carms object with a simulation.
+plot.carms              Deliver a plot of the simulation of a carms
+                        object.
+simulate.carms          Generate a simulation of a carms object.

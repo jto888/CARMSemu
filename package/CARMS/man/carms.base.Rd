@@ -19,9 +19,6 @@
 	\item{time_units}{
 		A string establishing the units of time measure. This value is requried on only the first carms.base call on a carms object. It will be ignored in subsequent carms.base calls.  The units string provided here will be used for the x-axis label of the simulation plot. 
 	}
-	\item{size}{
-		A relative value for the base element often determined by trial and modification of diagram development. 
-	}
 	\item{base_label}{
 		An optional string that can be used as a valid R object name holding this value.
 	}

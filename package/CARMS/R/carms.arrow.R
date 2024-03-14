@@ -32,12 +32,12 @@ carms.arrow<- function(x, from, to, rate, arc=0.35, arrow.position=0.5, label=""
 	# need to establish the transition table vector for this arrow			
 	if(is.character(rate)) {			
 		trate<-eval(parse(text=paste(rate)))		
-		if(!is.numeric(trate)) warn("transition rate has not been established numerically")		
+		if(!is.numeric(trate)) warning("transition rate has not been established numerically")		
 	}else{			
 		if(is.numeric(rate)) {		
 			trate<-rate	
 		}else{		
-			warn( "transition rate has not been interpreted")	
+			warning( "transition rate has not been interpreted")	
 		}		
 	}			
 				
