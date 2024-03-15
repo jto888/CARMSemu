@@ -23,18 +23,18 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/ChainedS
 	tt<-rbind(trans1, trans2, trans3)			
 				
 	#simulation control			
-	steps<-40			
-	cycles<-1000			
-	simhistory<-1e4			
-	simcontrol<-list(steps=steps, cycles=cycles, simhistory=simhistory)			
+	intervals<-40			
+	nsim<-1000			
+	mission_time<-1e4			
+	simcontrol<-list(intervals=intervals, nsim=nsim, mission=mission_time)			
 				
 				
 # Run the simulation				
 	outmat<-ChainedSimulation(states, tt, simcontrol)			
 				
 	nstates<-length(states)			
-	stepsize<-simhistory/steps			
-	outmat<-outmat/(stepsize*cycles)			
+	stepsize<-mission_time/intervals			
+	outmat<-outmat/(stepsize*nsim)			
 	initial_state_probabilities<-matrix(states, nrow=1, ncol=nstates)			
 	outmat<-rbind(initial_state_probabilities, outmat)			
 				
@@ -43,11 +43,11 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/ChainedS
 	Title<-"Jeep    Spare tire configs"			
 	time_label<-"Miles"			
 	prob_label<-"Probability"			
-	spline_knots<-10   # a fraction of steps to create a smoothed curve on plot			
+	spline_knots<-10   # a fraction of intervals to create a smoothed curve on plot			
 	colors<-c("mediumorchid4","mediumseagreen","mistyrose4","navyblue","maroon4")			
 				
 # Generate the plot				
-	x<-seq(0, simhistory, by=simhistory/steps)			
+	x<-seq(0, mission_time, by=mission_time/intervals)			
 	dev.new(width=5, height=4, unit="in")			
 	plot(x,outmat[,1], type="n",			
 	main=Title,			
