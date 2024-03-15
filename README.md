@@ -39,7 +39,6 @@ jeep.R
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/jeep.R")
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ![](images/jeep.jpeg)
@@ -78,7 +77,6 @@ system of ordinary differential equations for this model.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/percpuio.R")
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ![](images/percpuio.jpg)
@@ -107,7 +105,6 @@ can be simply installed by copying the following line into the R Console:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 install.packages("diagram")
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You will have been asked to select a CRAN mirror --- the first selection always
@@ -143,7 +140,6 @@ session.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/LoadCARMSemulationFunctions.R")
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The script lines for creating the first simple two component parallel example
@@ -159,7 +155,7 @@ Pa2Simpl<- carms.make( title = "Parallel     Same failure rates")
 Pa2Simpl<- carms.state(Pa2Simpl, prob=1, name="P1", size=7, position=c(2,6))
 Pa2Simpl<- carms.state(Pa2Simpl, prob=0, name="P1", size=7, position=c(5,6))
 Pa2Simpl<- carms.state(Pa2Simpl, prob=0, name="P1", size=7, position=c(8,6))
-#
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is now possible to view the way the Pa2Simpl object has been stored in R by
@@ -167,7 +163,6 @@ simply calling for it:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Pa2Simpl
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You will not be troubled here with a view of what has been just delivered, but
@@ -178,7 +173,6 @@ Now to view the formative diagram enter
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 diagram(Pa2Simpl)
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ![](images/Pa2Simpl_diagram1.jpeg)
@@ -208,7 +202,6 @@ SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, full",size=4.5,  h2w=.4, posit
 SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, full",size=4.5,  h2w=.4, position=c(8,3))
 SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, half",size=4.5,  h2w=.4, position=c(8,9))
 SaGyro<-carms.state(SaGyro, prob=0, name="failed state",size=3, h2w=1.7, position=c(11,6))
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The graphics device is altered by a further definition before displaying the
@@ -219,7 +212,6 @@ diagram
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 dev.new(width=15, height=8, unit="in")
 diagram.carms(SaGyro, shadow=FALSE)
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
  
@@ -243,7 +235,6 @@ adding base values to the carms object are:
 SaGyro<-carms.base(SaGyro, value=5e-2, time_units= "thousand Hours", base_label="B1", description="gyro failure")
 SaGyro<-carms.base(SaGyro, value=1e-2, base_label="B2", description="false switch")
 SaGyro<-carms.base(SaGyro, value=1e-1, base_label="B3", description="monitor disable")
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Notice how the SaGyro object is passed into each successive script line as the
@@ -281,7 +272,6 @@ SaGyro<-carms.arrow(SaGyro, 6, 7, rate="B1", label="B1", arc=-.3)
 
 dev.new(width=15, height=8, unit="in")
 diagram.carms(SaGyro, shadow=FALSE, rate.text.y.shift=0.7 )
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ![](images/SaGyro_diagram2.jpg)
@@ -300,7 +290,6 @@ the plot.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 SaGyro<-simulate.carms(SaGyro, "bd", 40,50)
 plot.carms(SaGyro)
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ![](images/SaGyro_plot.jpeg)
