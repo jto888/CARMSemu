@@ -6,7 +6,7 @@
 # State 4 considers that a spare tire has been deployed				
 # Finally state 5 indicates failure after one of the remaining 3 original tires or the spare go flat				
 				
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/ChainedSimulation.R")				
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/no_package/ChainedSimulation.R")				
 				
 # key inputs				
 	# vector of states with initial probabilities			
