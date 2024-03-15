@@ -11,8 +11,11 @@
 # both of the available I/O units can be deployed to resupply the queue. 							
 # Finally, it is possible for the cpu to exhaust the job queue at state 4. Since the 2 I/O units are available at state 4, 							
 # refilling of job slots proceeds and so there will be expected steady state performance over time.							
+
+# This file is an original developmental script and is very different in execution than a file
+# by the same name stored as an example in the CARMS package.	
 													
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/no_package/RungeKutta.R")		
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/RungeKutta1.R")		
 
 							
 # key inputs							
@@ -31,10 +34,10 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/no_packa
 	tt<-rbind(trans1, trans2, trans3, trans4, trans5, trans6)						
 							
 	#simulation control						
-	steps<-100						
-	cycles<-5000						
-	simhistory<-60						
-	simcontrol<-list(steps=steps, cycles=cycles, simhistory=simhistory)						
+	intervals<-100						
+	nsim<-5000						
+	mission_time<-60						
+	simcontrol<-list(intervals=intervals, nsim=nsim, mission=mission_time)						
 							
 # Run the simulation
 	outmat<-RungeKutta1(states, tt, simcontrol)
@@ -51,12 +54,12 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/no_packa
 	Title<-"Performance queuing simulation\n3 jobs, 1 CPU, and 2 I/O devices available."						
 	time_label<-"Hours"						
 	prob_label<-"Probability"						
-	spline_knots<-10   # a fraction of steps to create a smoothed curve on plot						
+	spline_knots<-10   # a fraction of intervals to create a smoothed curve on plot						
 	colors<-c("red4","mediumseagreen","snow4","navyblue","maroon4")						
 							
 # Generate the plot	
 	nstates<-length(states)					
-	x<-seq(0, simhistory, by=simhistory/steps)						
+	x<-seq(0, mission_time, by=mission_time/intervals)						
 	dev.new(width=5, height=4, unit="in")						
 	plot(x,outmat[,1], type="n",						
 	main=Title,						
