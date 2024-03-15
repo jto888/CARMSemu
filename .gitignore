@@ -17,11 +17,16 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
+# Rcheck folder
+package/CARMS.Rcheck/
+
 # Windows Installer files
 *.cab
 *.msi
 *.msm
 *.msp
+*.zip
+*.tar.gz
 
 # Windows shortcuts
 *.lnk
