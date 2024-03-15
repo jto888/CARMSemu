@@ -66,7 +66,7 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 					
 					
 	# Generate the plot				
-	x_values<-seq(0,mission, by=mission/steps)				
+	x_values<-seq(0,mission, by=mission/intervals)				
 	dev.new(width=9, height=6, unit="in")				
 	 #par(mar=c(5,5,3,7), bg="gray98", xpd=FALSE)				
 	par(mar=c(5,5,3,7), bg=bg, xpd=FALSE)				
