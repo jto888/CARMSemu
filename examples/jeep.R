@@ -4,9 +4,12 @@
 # Initial states are 1 and 3, both considering 4 tires working				
 # State 2 indicates failure after one of the 4 tires goes flat				
 # State 4 considers that a spare tire has been deployed				
-# Finally state 5 indicates failure after one of the remaining 3 original tires or the spare go flat				
+# Finally state 5 indicates failure after one of the remaining 3 original tires or the spare go flat	
+
+# This file is an original developmental script and is very different in execution than a file
+# by the same name used as a demo within the CARMS package.			
 				
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/no_package/ChainedSimulation.R")				
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/ChainedSimulation.R")				
 				
 # key inputs				
 	# vector of states with initial probabilities			
