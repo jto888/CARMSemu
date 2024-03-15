@@ -7,4 +7,4 @@ source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/no_packa
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/no_package/BackwardDifference.R")
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/RungeKutta.R") 
 source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/StochasticChain.R") 
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/package/CARMS/R/plot.carms.R") 
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/no_package/plot.carms.R") 
