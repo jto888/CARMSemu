@@ -25,7 +25,7 @@ jeep<-carms.arrow(jeep, from=1, to=1, rate=0, label="Without Spare")
 jeep<-carms.arrow(jeep, from=3, to=3, rate=0, label="With Spare")	
 	
 	diagram(jeep)
-# usage: simulate.carms(x, method, simhistory, steps=20, cycles=1000)	
-jeep<-simulate.carms(jeep, method="rk", simhistory=10000, steps=50)	
+# usage: simulate.carms(x, solution, mission_time, intervals=20, cycles=1000)	
+jeep<-simulate.carms(jeep, solution="rk", mission_time=10000, intervals=50)	
 	
 	plot(jeep)
