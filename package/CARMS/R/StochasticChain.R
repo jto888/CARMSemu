@@ -10,28 +10,28 @@ StochasticChain<-function(states, tt, simcontrol)  {
 								
 								
 	#unpack the control_list							
-		steps<-simcontrol$steps						
-		cycles<-simcontrol$cycles						
-		simhistory=simcontrol$simhistory						
+		intervals<-simcontrol$intervals					
+		cycles<-simcontrol$cycles			
+		mission=simcontrol$mission						
 								
 	# derivations from key input							
 		nstates<-length(states)						
-		stepsize<-simhistory/steps						
+		stepsize<-mission/intervals						
 		istate<-which(states == 1)						
-		outmat<-matrix(rep(0,nstates*steps),steps,nstates)						
+		outmat<-matrix(rep(0,nstates*intervals),intervals,nstates)						
 								
 								
 								
 								
 		# simulation code						
-		for(cy in 1:cycles) {						
+		for(sim in 1:cycles) {						
 								
 		for(st in istate) {						
 								
 			time<-0					
 			history<-data.frame(state=st, duration=0, time=time)					
 								
-			while(time<simhistory) {					
+			while(time<mission) {					
 			trows<-which(tt$from==history[nrow(history),1])					
 								
 			if(!length(trows)==0) {					
@@ -43,8 +43,8 @@ StochasticChain<-function(states, tt, simcontrol)  {
 				history[nrow(history),2]<-duration				
 				nextstate<-tt$to[trows[which(dur==duration)]]				
 				time<-history[nrow(history),3] + duration				
-				if(time>simhistory) {				
-					time<-simhistory			
+				if(time>mission) {				
+					time<-mission			
 					duration<-time-history[nrow(history),3]			
 					history[nrow(history),2]<-duration			
 				}else{				
@@ -52,7 +52,7 @@ StochasticChain<-function(states, tt, simcontrol)  {
 				}				
 								
 			}else{					
-				time<-simhistory				
+				time<-mission				
 				duration<-time-history[nrow(history),3]				
 				history[nrow(history),2]<-duration				
 			}					
@@ -63,8 +63,8 @@ StochasticChain<-function(states, tt, simcontrol)  {
 								
 				mod_history<-history				
 				start_time<-0				
-			for( step in 1:steps) {					
-				# update end_time for this step				
+			for( interval in 1:intervals) {					
+				# update end_time for this interval				
 				end_time<-start_time+stepsize				
 				accum_duration<-0				
 				eval_time<-start_time				
@@ -74,17 +74,17 @@ StochasticChain<-function(states, tt, simcontrol)  {
 					if( (mod_history$duration[1]+accum_duration)>stepsize ) {			
 						# duration for this state is stepsize - accum_duration		
 						this_state<-mod_history$state[1]		
-						outmat[step, this_state]<-outmat[step, this_state] + (stepsize - accum_duration)		
-						# modify line 1 of mod_history to reflect remaining duration to carry over to next step		
+						outmat[interval, this_state]<-outmat[interval, this_state] + (stepsize - accum_duration)		
+						# modify line 1 of mod_history to reflect remaining duration to carry over to next interval		
 						mod_history$duration[1]<-mod_history$duration[1] - (stepsize - accum_duration)		
 						mod_history$time[1]<-end_time		
-						# adjust start_time for next step		
-						eval_time<-end_time  # this will terminate the while loop for this step		
+						# adjust start_time for next interval		
+						eval_time<-end_time  # this will terminate the while loop for this interval		
 						start_time<- end_time		
 					}else{			
 						# add this duration to outmat for this state		
 						this_state<-mod_history$state[1]		
-						outmat[step, this_state]<-outmat[step, this_state] + mod_history$duration[1]		
+						outmat[interval, this_state]<-outmat[interval, this_state] + mod_history$duration[1]		
 						# update accum_duration		
 						accum_duration<-accum_duration+mod_history$duration[1]		
 						# delete this line from mod_history		
@@ -92,7 +92,7 @@ StochasticChain<-function(states, tt, simcontrol)  {
 						mod_history<-mod_history[-1,]		
 					}			
 				}				
-			}  # next step					
+			}  # next interval					
 								
 		} # next initial state (if it exists)						
 								
@@ -103,7 +103,7 @@ StochasticChain<-function(states, tt, simcontrol)  {
 		# outmat is the return object from C++						
 		# These final steps are just as easy to do in R						
 			nstates<-length(states)					
-			stepsize<-simhistory/steps					
+			stepsize<-mission/intervals					
 			outmat<-outmat/(stepsize*cycles)					
 			initial_state_probabilities<-matrix(states, nrow=1, ncol=nstates)					
 			outmat<-rbind(initial_state_probabilities, outmat)					

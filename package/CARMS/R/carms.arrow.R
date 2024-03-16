@@ -28,6 +28,20 @@ carms.arrow<- function(x, from, to, rate, arc=0.35, arrow.position=0.5, label=""
 	if(!is(x,"carms")){			
 		stop("x  argument is not of class  carms ")		
 	}			
+
+	# extract the base values and place them in default labels and any custom base_label
+	# within this function scope, this is done on every carms.arrow call
+	nbase<-0			
+	if(!is.null(x$base)) {			
+		nbase<-length(x$base)		
+		for(base in 1:nbase) {		
+			eval(parse(text=paste0("B",base,"<-",x$base[[base]]$value)))	
+			eval(parse(text=paste0("b",base,"<-",x$base[[base]]$value)))	
+			if(!is.null(x$base[[base]]$base_label)) {	
+				eval(parse(text=paste0(x$base[[base]]$base_label,"<-",x$base[[base]]$value)))
+			}	
+		}		
+	}			
 				
 	# need to establish the transition table vector for this arrow			
 	if(is.character(rate)) {			

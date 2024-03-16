@@ -24,15 +24,9 @@ carms.base<-function(x, value, time_units=NULL, base_label=NULL, description="")
 	x$base[[i]]$value <- value	
 	x$base[[i]]$description<-description
 
-		
-	# pass the base value to labels  in the global environment	
-	assign(paste0("B",i), value, envir=.GlobalEnv)	
-	assign(paste0("b",i), value, envir=.GlobalEnv)
 	if(!is.null(base_label)) {	
-		x$base[[i]]$label<-base_label	
-		assign(base_label, value, envir=.GlobalEnv)	
+		x$base[[i]]$label<-base_label
 	}
-
 		
 	x	
 }

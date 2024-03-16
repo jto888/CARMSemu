@@ -1,5 +1,5 @@
-\name{simulate.carms}
-\alias{simulate.carms}
+\name{simulate}
+\alias{simulate}
 
 \title{
     Generate a simulation of a carms object.
@@ -8,7 +8,7 @@
     This function calls for the simulation on a completed carms object.
 	}
 \usage{
-	simulate.carms(x, solution, mission_time, intervals=20, cycles=1000)
+	simulate(x, solution, mission_time, intervals=20, cycles=1000)
 	}
 
 \arguments{

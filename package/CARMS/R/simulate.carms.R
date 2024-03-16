@@ -1,5 +1,5 @@
 
-simulate.carms<-function(x, method, simhistory, steps=20, cycles=1000) {			
+simulate.carms<-function(x, solution, mission_time, intervals=20, cycles=1000) {			
 	# need to test that x is a carms object among perhaps other validations		
 	if(!is(x,"carms")){		
 		stop("x  argument is not of class  carms ")	
@@ -24,27 +24,27 @@ simulate.carms<-function(x, method, simhistory, steps=20, cycles=1000) {
 	rate<-tt_mat[,3]		
 	tt<-data.frame(from, to, rate)		
 			
-	simcontrol<-list(simhistory=simhistory, steps=steps, cycles=cycles)		
-	if(method=="rk") {		
+	simcontrol<-list(mission=mission_time, intervals=intervals, cycles=cycles)		
+	if(solution=="rk") {		
 	P<-RungeKutta(istates, tt, simcontrol)		
 	}		
-	if(method=="bd") {		
+	if(solution=="bd") {		
 	P<-BackwardDifference(istates, tt, simcontrol)		
 	}		
-	if(method=="chain") {		
+	if(solution=="chain") {		
 	P<-StochasticChain(istates, tt, simcontrol)		
 	}		
 			
 	if(!is.null(x$Pfunction) )  {		
 		for(pf in 1:length(x$Pfunction) ) {
-			t<-seq(0, simhistory, by=simhistory/steps)
+			t<-seq(0, mission_time, by=mission_time/intervals)
 			eval(parse(text=x$Pfunction[[pf]]))
 		}	
 	}		
 			
 	# populate x$simulation		
 	x$simulation<-list()		
-	x$simulation$method<-method		
+	x$simulation$solution<-solution		
 	x$simulation$simcontrol<-simcontrol		
 	x$simulation$P<-P		
 			
@@ -58,5 +58,6 @@ simulate.carms<-function(x, method, simhistory, steps=20, cycles=1000) {
 			
 	x		
 }			
-# faking S3 overridintg (will mask stats::simulate
+
+# fake S3 emulation
 simulate<-simulate.carms

@@ -78,9 +78,7 @@ diagram.carms<-function(x, text.size=0.7, rate.text.y.shift=0.7,shadow=FALSE ) {
 		arr.lcol <- x$arrows$arr.lcol		
 		arr.type <- x$arrows$arr.type		
 				
-	}			
-				
-	requireNamespace(diagram)
+	}
 	
 		if(is.null(x$arrows)) {				
 	# plotmat call for states only, before arrows are defined					

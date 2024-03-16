@@ -8,7 +8,7 @@
     This function delivers a plot of the varying probability of each state over the simulated mission history.
 	}
 \usage{
-	plot.carms(x, spline_curve=TRUE, knots=10, ...) 
+	\method{plot}{carms}(x, spline_curve=TRUE, knots=10, ...) 
 	}
 
 \arguments{

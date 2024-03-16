@@ -1,6 +1,4 @@
-#useDynLib(CARMS)
-#useDynLib(CARMS, .registration=TRUE)
-importFrom(Rcpp, evalCpp)
+
 importFrom("graphics", "abline", "axis", "curve", "legend", "lines",
 		 "par", "plot", "plot.default", "points", "title", "rect")
 importFrom("stats", "rexp", "smooth.spline")
@@ -16,12 +14,12 @@ export(
 	carms.arrow,
 	diagram.carms,
 	simulate.carms,
-
+	simulate,
 	matP,
 #	StochasticChain,
 #	RungeKutta,
 #	BackwardDifference,
-
 	plot.carms,
 diagram
 )
+S3method(plot, carms)

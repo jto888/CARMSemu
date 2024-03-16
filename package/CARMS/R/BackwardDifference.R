@@ -1,8 +1,8 @@
 
 BackwardDifference<-function(states, tt, simcontrol)  {					
 	# generate key parameters for Stewart's algorithm				
-		t<-simcontrol$simhistory			
-		h<-t/simcontrol$steps			
+		t<-simcontrol$mission			
+		h<-t/simcontrol$intervals			
 		eta<-t/h			
 		y0<-states			
 					

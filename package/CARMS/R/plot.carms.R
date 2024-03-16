@@ -13,9 +13,9 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	}				
 					
 					
-	method<-x$simulation$method				
-	history<-x$simulation$simcontrol$simhistory				
-	steps<-x$simulation$simcontrol$steps				
+	solution<-x$simulation$solution				
+	mission<-x$simulation$simcontrol$mission				
+	intervals<-x$simulation$simcontrol$intervals				
 	units<- .simpleCap(x$time_units)				
 	cycles<-x$simulation$simcontrol$cycles				
 					
@@ -23,10 +23,10 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 					
 	Title<- x$title				
 	# define a subtitle with simulation information				
-	if(method=="rk"|| method=="bd") {				
-		sub<- paste0("method: ", method, "   steps: ",steps, "   time: ", history," ",units)			
+	if(solution=="rk"|| solution=="bd") {				
+		sub<- paste0("solution: ", solution, "   intervals: ",intervals, "   mission_time: ", mission," ",units)			
 	}else{				
-		sub<-paste0("method: ", method, "   steps: ",steps, "  time: ", history," ",units, "   cycles: ", cycles)			
+		sub<-paste0("solution: ", solution, "   intervals: ",intervals, "  mission_time: ", mission," ",units, "   cycles: ", cycles)			
 	}				
 	xlab<- .simpleCap(x$time_units)				
 	ylab<- "Probability"				
@@ -47,14 +47,14 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 		# lwd			
 					
 					
-	xlim<- c(-history/10,history*1.1)				
+	xlim<- c(-mission/10,mission*1.1)				
 	# always probabilities?				
 	ylim<-c(-.05,1.05)				
 					
-	# establish the tick locations (now that history has been defined)				
-	small_x_ticks<-seq(xlim[1], xlim[2], by= history/40)				
-	large_x_ticks<-seq(xlim[1], xlim[2], by= history/10)				
-	labeled_x_ticks<-seq(0,history, by=history/5)				
+	# establish the tick locations (now that mission has been defined)				
+	small_x_ticks<-seq(xlim[1], xlim[2], by= mission/40)				
+	large_x_ticks<-seq(xlim[1], xlim[2], by= mission/10)				
+	labeled_x_ticks<-seq(0,mission, by=mission/5)				
 	# percentage ticks are the same for all?				
 	small_y_ticks<-seq(ylim[1], ylim[2], by=.02)				
 	large_y_ticks<-seq(ylim[1], ylim[2], by=.1)				
@@ -66,7 +66,7 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 					
 					
 	# Generate the plot				
-	x_values<-seq(0,history, by=history/steps)				
+	x_values<-seq(0,mission, by=mission/intervals)				
 	dev.new(width=9, height=6, unit="in")				
 	 #par(mar=c(5,5,3,7), bg="gray98", xpd=FALSE)				
 	par(mar=c(5,5,3,7), bg=bg, xpd=FALSE)				
