@@ -36,10 +36,15 @@ StochasticChain<-function(states, tt, simcontrol)  {
 								
 			if(!length(trows)==0) {					
 				dur<-NULL				
-				for(i in 1:length(trows)) {				
-					dur<-c(dur, rexp(1,tt[trows[i],3]))			
-				}				
-				duration<-min(dur)				
+				for(i in 1:length(trows)) {	
+					if(tt[trows[i],3] > 0)  {
+						dur<-c(dur, rexp(1,tt[trows[i],3]))	
+					}						
+				}
+				duration <- dur[1]
+				if(length(dur)>1) {
+					duration<-min(dur)
+				}
 				history[nrow(history),2]<-duration				
 				nextstate<-tt$to[trows[which(dur==duration)]]				
 				time<-history[nrow(history),3] + duration				
