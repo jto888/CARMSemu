@@ -15,5 +15,5 @@ Author: David Silkworth [aut],
   OpenReliability.org [cph]
 Maintainer: Jacob Ormerod <jake@openreliability.org>
 NeedsCompilation: yes
-SystemRequirements: C++11
+Imports: Rcpp, methods, diagram
 LinkingTo: Rcpp, RcppArmadillo

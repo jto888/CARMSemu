@@ -1,4 +1,15 @@
+# StochasticChain_Rcode.R
+# This code implements a stochastic model algorithm for the solution of the partial differenctial
+# equations represented by the transtion table (tt). It is a custom solution by David Silkworth
+# rather than reproducing the Petri Net solution implemented by Paul Pukite in the original
+# CARMS application.
 
+# This file has been included in the CARMS package specifically those interested in studying 
+# this implementation using interpreted R code. It can be called from simulate.carms by
+# using a solution="chain_R" argument. It is much slower than the C++ version.
+
+
+#' @noRd
 StochasticChain_Rcode<-function(states, tt, simcontrol)  { 								
 								
 	# This is where the tt dataframe will be separated into							

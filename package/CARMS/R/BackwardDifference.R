@@ -1,4 +1,16 @@
+#BackwardDifference.R
+# This code implements the backward differentiation formula (BDF) for solving the partial differential equations
+# that describe a continuos time(rate transitioning)Markov model. This code is adapted from the
+# Matlab code documeneted in William Stweart's book "Introduction to Numerical Solution of Markov Chains".
+# It is utilized to emulate the same functionality executed in the CARMS application.
 
+# The most instructive aspect of this code is the infinitesimal generator, matrix Q, representing the
+# transition rates applicable to the ordinary differential equations defining the Markov model.
+# As the steps, eta, are advanced through time a new resultant vector y (of probabilities) progressively acts
+# upon the unchanging matrix Q.
+
+
+#' @noRd
 BackwardDifference<-function(states, tt, simcontrol)  {					
 	# generate key parameters for Stewart's algorithm				
 		t<-simcontrol$mission			

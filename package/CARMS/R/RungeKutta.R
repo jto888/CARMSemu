@@ -10,7 +10,7 @@
 # upon the unchanging matrix Q.
 
 
-
+#' @noRd
 RungeKutta<-function(states, tt, simcontrol)  {				
 	# generate key parameters for Stewart's algorithm			
 		t<-simcontrol$mission		
