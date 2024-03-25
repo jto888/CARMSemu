@@ -16,8 +16,7 @@
         A completed \code{"carms"} object as initialized by carms.make and modified by previous carms.state, carms.base and carms.arrow calls
 	}
 	\item{solution}{
-		A string of "rk", "bd", or "chain" indicating the method of obtaining the simulation solution. Although not intended for production
-		work, it is possible to enter a string of "chain_R" to execute the formative R code for the stochastic chain solution.
+		A string of "rk", "bd", or "chain" indicating the method of obtaining the simulation solution.
 	}
 	\item{mission_time}{
 		A time value for the extent of mission history for the simulation
@@ -32,7 +31,9 @@
 
 \details{
 	It was chosen not to register this functionThis function, due to differences in fundimental arguments with stats::simulate.
-	
+	For this reason upon loading the CARMS library one will notice that function simulate is masked from the stats library.
+}
+
 \value{
 	This function returns a matrix of probabilities for each state at each time step to the carms$simulation list element.
 }
@@ -43,7 +44,7 @@
 	SiSimpl<-carms.state(SiSimpl, prob=0, name="P2", size=7, h2w=14/20, position=c(6,3) )	
 	SiSimpl<-carms.base(SiSimpl, 1, time_units="hours",  description="Failure rate")
 	SiSimpl<-carms.arrow(SiSimpl, from=1, to=2, rate="B1",label="B1")
-	SiSimpl<-simulate.carms(SiSimpl, solution="rk", mission_time=200)
+	SiSimpl<-simulate(SiSimpl, solution="rk", mission_time=200)
 }
 
 \references{
