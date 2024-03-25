@@ -124,3 +124,7 @@ sim++;
 }
 
 }
+
+Rcpp::NumericMatrix Simulation::getOutmat() {
+	return Rcpp::wrap(outmat/(stepsize*cycles));
+}

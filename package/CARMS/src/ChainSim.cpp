@@ -7,7 +7,7 @@
  SEXP ChainSim(SEXP states_in, SEXP tt_int, SEXP tt_float, SEXP control_in) {     
 	using namespace Rcpp;
 	
-	Rcpp::List outlist;
+//	Rcpp::List outlist;
 	Rcpp::RNGScope Scope; 
 /*	
 	Environment base("package:base");
@@ -19,8 +19,8 @@
 	std::unique_ptr<Simulation> SIM(new Simulation(states_in, tt_int, tt_float, control_in) );
 
 
-outlist.push_back(Rcpp::wrap(SIM->outmat));
+//outlist.push_back(Rcpp::wrap(SIM->outmat));
 
-	 return(outlist);
+	 return(SIM->getOutmat());
 
 }

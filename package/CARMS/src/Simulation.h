@@ -44,13 +44,15 @@ class Simulation {
 	double accum_duration;
 	double eval_time;
 	int this_state;
+// declare the outmat object
+	arma::Mat<double>  outmat;
+
 	
 	public:	
 // Constructor	
 	Simulation(SEXP states_in, SEXP tt_int, SEXP tt_float, SEXP control_in);
 // return object	
-// declare the outmat object
-	arma::Mat<double>  outmat;
+	Rcpp::NumericMatrix getOutmat();
 		
 
 };
