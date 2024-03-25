@@ -1,6 +1,6 @@
 Package: CARMS
-Version: 0.1.5
-Date: 2024-3-19
+Version: 0.5
+Date: 2024-3-24
 Title: Continuous Time Markov Rate Modeling for Reliability Analysis
 Authors@R: c(person("David", "Silkworth", email = "djsilk@openreliability.org", role = "aut"), person("Paul", "Pukite", role = "aut"), person("Jacob", "Ormerod", email = "jake@openreliability.org", role = "cre"), person("OpenReliability.org", role = "cph"))
 Description: Emulation of an application originally created by Paul Pukite. Computer Aided Rate Modeling and Simulation.  Jan Pukite and Paul Pukite, (1998, ISBN 978-0-7803-3482), William J. Stewart, (1994, ISBN: 0-691-03699-3).
@@ -16,5 +16,4 @@ Author: David Silkworth [aut],
 Maintainer: Jacob Ormerod <jake@openreliability.org>
 NeedsCompilation: yes
 SystemRequirements: C++11
-
-
+LinkingTo: Rcpp, RcppArmadillo

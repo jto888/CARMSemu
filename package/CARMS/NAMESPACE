@@ -1,3 +1,6 @@
+useDynLib(CARMS)
+importFrom(Rcpp, evalCpp)
+exportPattern("^[[:alpha:]]+")
 
 importFrom("graphics", "abline", "axis", "curve", "legend", "lines",
 		 "par", "plot", "plot.default", "points", "title", "rect")

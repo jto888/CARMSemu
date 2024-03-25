@@ -34,7 +34,9 @@ simulate.carms<-function(x, solution, mission_time, intervals=20, cycles=1000) {
 	if(solution=="chain") {		
 	P<-StochasticChain(istates, tt, simcontrol)		
 	}		
-			
+	if(solution=="chain_R") {		
+	P<-StochasticChain_Rcode(istates, tt, simcontrol)		
+	}			
 	if(!is.null(x$Pfunction) )  {		
 		for(pf in 1:length(x$Pfunction) ) {
 			t<-seq(0, mission_time, by=mission_time/intervals)

@@ -1,5 +1,5 @@
 
-StochasticChain<-function(states, tt, simcontrol)  { 								
+StochasticChain_Rcode<-function(states, tt, simcontrol)  { 								
 								
 	# This is where the tt dataframe will be separated into							
 	# a stacked integer vector from tt$from and tt$to							
