@@ -28,7 +28,19 @@
 
 
 \value{
-	This function returns no value.
+	This function returns no value. The image on the generated graphics device is typically used for progressive 
+	editing of state size, h2w, and position arguments as well as arrow arc, and arrow.position arguments.
+}
+
+\examples{
+	SiSimpl<-carms.make(title="Parallel            Identical components", diagram_grid=c(5,8))
+	SiSimpl<-carms.state(SiSimpl, prob=1, name="P1", size=7, h2w=14/20, position=c(2,3) )
+	SiSimpl<-carms.state(SiSimpl, prob=0, name="P2", size=7, h2w=14/20, position=c(6,3) )	
+	SiSimpl<-carms.base(SiSimpl, 1, time_units="hours",  description="Failure rate")
+	SiSimpl<-carms.arrow(SiSimpl, from=1, to=2, rate="B1",label="B1")
+	\dontrun{
+	diagram.carms(SiSimpl, shadow=TRUE)
+	}
 }
 
 \references{

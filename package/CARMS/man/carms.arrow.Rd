@@ -39,6 +39,14 @@
 	The	input object will be returned with the addition this arrow information in the \code{"carms$arrows$arrow"} list element.	
 }
 
+\examples{
+	SiSimpl<-carms.make(title="Parallel            Identical components", diagram_grid=c(5,8))
+	SiSimpl<-carms.state(SiSimpl, prob=1, name="P1", size=7, h2w=14/20, position=c(2,3) )
+	SiSimpl<-carms.state(SiSimpl, prob=0, name="P2", size=7, h2w=14/20, position=c(6,3) )	
+	SiSimpl<-carms.base(SiSimpl, 1, time_units="hours",  description="Failure rate")
+	SiSimpl<-carms.arrow(SiSimpl, from=1, to=2, rate="B1",label="B1")
+}
+
 \references{
 
   Jan Pukite and Paul Pukite (1998), "Modeling for Reliability Analysis", IEEE Press, New York

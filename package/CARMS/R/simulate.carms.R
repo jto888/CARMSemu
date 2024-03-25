@@ -1,5 +1,5 @@
 
-simulate.carms<-function(x, solution, mission_time, intervals=20, cycles=1000) {			
+simulate.carms<-function(x, solution, mission_time, intervals=50, cycles=2000) {			
 	# need to test that x is a carms object among perhaps other validations		
 	if(!is(x,"carms")){		
 		stop("x  argument is not of class  carms ")	

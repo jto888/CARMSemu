@@ -39,4 +39,7 @@
 
 \examples{
 	jeep<-carms.make("jeep    Tire configurations")	
+	
+	SiSimpl<-carms.make(title="Parallel            Identical components", diagram_grid=c(5,8))
+
 }

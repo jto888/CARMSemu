@@ -18,7 +18,7 @@
 		A logical determining whether to generate a smoothed spline curve from the simulation data (alternatively line segments from step to step will be displayed).
 	}
 	\item{knots}{
-		An integer value of a fraction of simulation steps to use for determination of a smoothed spline.
+		An integer value of a fraction of simulation intervals to use for determination of a smoothed spline.
 	}
 	\item{...}{
 		A list argument enabling modification of certain defaults (not yet implemented)
@@ -31,6 +31,19 @@
 
 \value{
 	This function returns a matrix of probabilities for each state at each time step to the carms$simulation list element.
+}
+
+\examples{
+	SiSimpl<-carms.make(title="Parallel            Identical components", diagram_grid=c(5,8))
+	SiSimpl<-carms.state(SiSimpl, prob=1, name="P1", size=7, h2w=14/20, position=c(2,3) )
+	SiSimpl<-carms.state(SiSimpl, prob=0, name="P2", size=7, h2w=14/20, position=c(6,3) )	
+	SiSimpl<-carms.base(SiSimpl, 1, time_units="hours",  description="Failure rate")
+	SiSimpl<-carms.arrow(SiSimpl, from=1, to=2, rate="B1",label="B1")
+	SiSimpl<-simulate(SiSimpl, solution="rk", mission_time=200)
+	\dontrun{
+	plot.carms(SiSimpl)
+	plot(SiSimpl)
+	}
 }
 
 \references{

@@ -30,9 +30,16 @@
 
 \value{
 	The	input object will be returned with the addition this base information in the \code{"carms$base"} list element.
-	Objects will also be added to the global environment as B_, b_ carrying the number of the order of base entries to the carms object.
-	Also, any base_label provided will be defined in the global environment as well.
+	Also, any base_label provided will be added to the \code{"carms$base"} list element as well.
 }
+
+\examples{
+	SiSimpl<-carms.make(title="Parallel            Identical components", diagram_grid=c(5,8))
+	SiSimpl<-carms.state(SiSimpl, prob=1, name="P1", size=7, h2w=14/20, position=c(2,3) )
+	SiSimpl<-carms.state(SiSimpl, prob=0, name="P2", size=7, h2w=14/20, position=c(6,3) )	
+	SiSimpl<-carms.base(SiSimpl, 1, time_units="hours",  description="Failure rate")
+}
+
 
 \references{
 
