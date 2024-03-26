@@ -8,7 +8,7 @@
     This function calls for the simulation on a completed carms object.
 	}
 \usage{
-	simulate(x, solution, mission_time, intervals=50, cycles=2000)
+	simulate(x, solution, mission_time, intervals=20, cycles=1000)
 	}
 
 \arguments{
