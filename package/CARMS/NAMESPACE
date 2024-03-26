@@ -2,6 +2,7 @@ useDynLib(CARMS, .registration = TRUE)
 importFrom(Rcpp, evalCpp)
 #exportPattern("^[[:alpha:]]+")
 
+importFrom("base", "suppressWarnings")
 importFrom("graphics", "abline", "axis", "curve", "legend", "lines",
 		 "par", "plot", "plot.default", "points", "title", "rect")
 importFrom("stats", "rexp", "smooth.spline")
