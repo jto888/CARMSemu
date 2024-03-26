@@ -44,7 +44,7 @@
 	SiSimpl<-carms.state(SiSimpl, prob=0, name="P2", size=7, h2w=14/20, position=c(6,3) )	
 	SiSimpl<-carms.base(SiSimpl, 1, time_units="hours",  description="Failure rate")
 	SiSimpl<-carms.arrow(SiSimpl, from=1, to=2, rate="B1",label="B1")
-	SiSimpl<-simulate(SiSimpl, solution="rk", mission_time=4)
+	SiSimpl<-simulate(SiSimpl, solution="rk", mission_time=200)
 }
 
 \references{
