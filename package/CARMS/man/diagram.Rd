@@ -31,13 +31,6 @@
 	This function returns no value. The image on the generated graphics device is typically used for progressive 
 	editing of state size, h2w, and position arguments as well as arrow arc, and arrow.position arguments.
 }
-	
-\references{
-
-  Jan Pukite and Paul Pukite (1998), "Modeling for Reliability Analysis", IEEE Press, New York
-  
-  William J. Stewart (1994), "Introduction to the numerical solution of Markov chains", Princeton University Press, Princeton
-}
 
 \examples{
 	SiSimpl<-carms.make(title="Parallel            Identical components", diagram_grid=c(5,8))
@@ -48,4 +41,11 @@
 	\dontrun{
 	diagram(SiSimpl)
 	}
+	
+\references{
+
+  Jan Pukite and Paul Pukite (1998), "Modeling for Reliability Analysis", IEEE Press, New York
+  
+  William J. Stewart (1994), "Introduction to the numerical solution of Markov chains", Princeton University Press, Princeton
 }
+
