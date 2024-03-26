@@ -1,6 +1,6 @@
 useDynLib(CARMS, .registration = TRUE)
 importFrom(Rcpp, evalCpp)
-exportPattern("^[[:alpha:]]+")
+#exportPattern("^[[:alpha:]]+")
 
 importFrom("base", "suppressWarnings")
 importFrom("graphics", "abline", "axis", "curve", "legend", "lines",
