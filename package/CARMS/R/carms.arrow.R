@@ -37,8 +37,8 @@ carms.arrow<- function(x, from, to, rate, arc=0.35, arrow.position=0.5, label=""
 		for(base in 1:nbase) {		
 			eval(parse(text=paste0("B",base,"<-",x$base[[base]]$value)))	
 			eval(parse(text=paste0("b",base,"<-",x$base[[base]]$value)))	
-			if(!is.null(x$base[[base]]$label)) {	
-				eval(parse(text=paste0(x$base[[base]]$label,"<-",x$base[[base]]$value)))
+			if(!is.null(x$base[[base]]$base_label)) {	
+				eval(parse(text=paste0(x$base[[base]]$base_label,"<-",x$base[[base]]$value)))
 			}	
 		}		
 	}			
