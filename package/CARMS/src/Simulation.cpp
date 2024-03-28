@@ -15,7 +15,7 @@ Simulation::Simulation(SEXP states_in, SEXP tt_int, SEXP tt_float, SEXP control_
 	to = ints_in[Rcpp::Range(tt_rows,(2*tt_rows-1))];
 	L = (control_in);		
 // unpack the control_list			
-	mission=L["mission"];		
+	mission= (double) L["mission"];		
 	intervals=L["intervals"];		
 	cycles=L["cycles"];		
 // derivations from key input			
