@@ -32,9 +32,17 @@
 
 \details{
 	It was chosen not to register this functionThis function, due to differences in fundimental arguments with stats::simulate.
+	}
 	
 \value{
 	This function returns a matrix of probabilities for each state at each time step to the carms$simulation list element.
+}
+
+\references{
+
+  Jan Pukite and Paul Pukite (1998), "Modeling for Reliability Analysis", IEEE Press, New York
+  
+  William J. Stewart (1994), "Introduction to the numerical solution of Markov chains", Princeton University Press, Princeton
 }
 
 \examples{
@@ -45,11 +53,3 @@
 	SiSimpl<-carms.arrow(SiSimpl, from=1, to=2, rate="B1",label="B1")
 	SiSimpl<-simulate.carms(SiSimpl, solution="rk", mission_time=200)
 }
-
-\references{
-
-  Jan Pukite and Paul Pukite (1998), "Modeling for Reliability Analysis", IEEE Press, New York
-  
-  William J. Stewart (1994), "Introduction to the numerical solution of Markov chains", Princeton University Press, Princeton
-}
-

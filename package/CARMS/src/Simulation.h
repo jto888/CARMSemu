@@ -14,7 +14,7 @@ class Simulation {
 	Rcpp::IntegerVector to;		
 	Rcpp::List L;		
 // unpack the control_list			
-	int mission;		
+	double mission;		
 	int intervals;		
 	int cycles;		
 	
