@@ -23,6 +23,8 @@ export(
 #	RungeKutta,
 #	BackwardDifference,
 	plot.carms,
+	examples.carms,
+	examples,
 diagram
 )
 S3method(plot, carms)
