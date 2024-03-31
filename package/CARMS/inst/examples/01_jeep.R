@@ -1,5 +1,4 @@
 require(CARMS)
-rm(list=ls(all=TRUE))
 
 # usage: carms.make(title, diagram_grid=c(11,12),...)
 jeep<-carms.make("jeep    Tire configurations")
