@@ -9,7 +9,7 @@
 	copy an installed example to the working directory, or display the examples directory location.	
 	}
 \usage{
-	examples.carms(action="list", file=NULL, package="CARMS")
+	examples(action="list", file=NULL, package="CARMS")
 	}
 
 \arguments{
