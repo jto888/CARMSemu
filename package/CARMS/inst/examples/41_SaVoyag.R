@@ -1,0 +1,35 @@
+require(CARMS)
+
+# usage: carms.make(title, diagram_grid=c(11,12),...)
+SaVoyag<-carms.make("Assembly         Capsule Separation Register")
+
+#usage: carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, plot.color=NULL,  description="")
+SaVoyag<-carms.state(SaVoyag, prob=1, name="All good", size=6, h2w=17/33, position=c(2,6))
+SaVoyag<-carms.state(SaVoyag, prob=0, name="Majority voting failure", size=7, h2w=15/46, position=c(5,4))
+SaVoyag<-carms.state(SaVoyag, prob=0, name="Redundant failure", size=7, h2w=16/47, position=c(8,2))
+SaVoyag<-carms.state(SaVoyag, prob=0, name="Redundant failure", size=7, h2w=16/41, position=c(5,8))
+SaVoyag<-carms.state(SaVoyag, prob=0, name="Majority voting failure", size=8, h2w=16/65, position=c(8,10))
+SaVoyag<-carms.state(SaVoyag, prob=0, name="Failed", size=3, h2w=5, position=c(11,6))
+
+
+# usage: carms.base(x, value, time_units=NULL, base_label=NULL, description="")
+SaVoyag<-carms.base(SaVoyag, 1e-3, time_units="thousand hours", base_label="MV", description="majority voter failure rate")
+SaVoyag<-carms.base(SaVoyag, 2e-3, base_label="RC", description="redundant component failure rate")
+SaVoyag<-carms.base(SaVoyag, 5e-4, description="failure of component #14025")
+
+#usage: carms.arrow(x, from, to, rate, arc=0.35, arrow.position=0.5, label="")
+SaVoyag<-carms.arrow(SaVoyag, from=1, to=2, rate="3*MV", arc=.35, label="3*MV")
+SaVoyag<-carms.arrow(SaVoyag, from=2, to=3, rate="2*RC", arc=.35, label="2*RC")
+SaVoyag<-carms.arrow(SaVoyag, from=3, to=6, rate="2*MV+RC+B3", arc=.2, arrow.position=.4, label="2*MV+RC+B3")
+SaVoyag<-carms.arrow(SaVoyag, from=2, to=6, rate="2*MV+RC", arc=.2, label="2*MV+RC")
+SaVoyag<-carms.arrow(SaVoyag, from=1, to=6, rate="B3", arc=0, label="B3")
+SaVoyag<-carms.arrow(SaVoyag, from=1, to=4, rate="2*RC", arc=-.35, label="2*RC")
+SaVoyag<-carms.arrow(SaVoyag, from=4, to=5, rate="3*MV", arc=-.25, label="3*MV")
+SaVoyag<-carms.arrow(SaVoyag, from=5, to=6, rate="2*MV+RC+B3", arc=-.2, arrow.position=.4, label="2*MV+RC+B3")
+SaVoyag<-carms.arrow(SaVoyag, from=4, to=6, rate="RC+B3", arc=-.05, label="RC+B3")
+	dev.new(width=15, height=8, unit="in")
+	diagram(SaVoyag)
+# usage: simulate.carms(x, solution, mission_time, intervals=50, cycles=2000)
+SaVoyag<-simulate(SaVoyag, "rk", mission_time=200, intervals=50)
+
+	plot(SaVoyag)

@@ -1,0 +1,40 @@
+library(CARMS)
+
+# usage: carms.make(title, diagram_grid=c(11,12),...)
+Sy3x2<-carms.make(title="System       3 by 2 parallel configuration",diagram_grid=c(11, 20))
+
+# carms.state(x, prob,  name, size=4, h2w=21/24, Pfunction=NULL, plot.line.color=NULL, position,  description="")
+Sy3x2<-carms.state(Sy3x2, 1, "Subsystem good", size=6, h2w=1/2.5, position=c(3,3))
+Sy3x2<-carms.state(Sy3x2, 0, "Spare used", size=6, h2w=1/2.5, position=c(7,3))
+Sy3x2<-carms.state(Sy3x2, 0, "Spare failed", size=6, h2w=1/2.5, position=c(11,3))
+Sy3x2<-carms.state(Sy3x2, 1, "Subsystem good", size=6, h2w=1/2.5, position=c(3,6))
+Sy3x2<-carms.state(Sy3x2, 0, "Spare used", size=6, h2w=1/2.5, position=c(7,6))
+Sy3x2<-carms.state(Sy3x2, 0, "Spare failed", size=6, h2w=1/2.5, position=c(11,6))
+Sy3x2<-carms.state(Sy3x2, 1, "Subsystem good", size=6, h2w=1/2.5, position=c(3,9))
+Sy3x2<-carms.state(Sy3x2, 0, "Spare used", size=6, h2w=1/2.5, position=c(7,9))
+Sy3x2<-carms.state(Sy3x2, 0, "Spare failed", size=6, h2w=1/2.5, position=c(11,9))
+Sy3x2<-carms.state(Sy3x2, 0, "1-(P1+P2)*(P4+P5)*(P7+P8)", size=3, h2w=4,
+Pfunction="P[,10]<-1-(P[,1]+P[,2])*(P[,4]+P[,5])*(P[,7]+P[,8])",position=c(16,6))
+
+# carms.base<-function(x, value, base_label=NULL, description="")
+Sy3x2<-carms.base(Sy3x2, 1, time_units="hours", description="Failure rate #1")
+Sy3x2<-carms.base(Sy3x2, 2,  description="Failure rate #2")
+Sy3x2<-carms.base(Sy3x2, 3,  description="Failure rate #3")
+
+# carms.arrow(x, from, to, rate, arc=0.35, arrow.position=0.5, label="")
+Sy3x2<-carms.arrow(Sy3x2, 1, 2, rate="2*B1", arc=.35, label="2*B1")
+Sy3x2<-carms.arrow(Sy3x2, 2, 3, rate="B1", arc=.35, label="B1")
+Sy3x2<-carms.arrow(Sy3x2, 3, 10, rate=0, arc=.2, label="failed")
+Sy3x2<-carms.arrow(Sy3x2, 4, 5, rate="2*B2", arc=.35, label="2*B2")
+Sy3x2<-carms.arrow(Sy3x2, 5, 6, rate="B2", arc=.35, label="B2")
+Sy3x2<-carms.arrow(Sy3x2, 6, 10, rate=0, arc=.2, label="failed")
+Sy3x2<-carms.arrow(Sy3x2, 7,8, rate="2*B3", arc=.35, label="2*B3")
+Sy3x2<-carms.arrow(Sy3x2, 8, 9, rate="B3", arc=.35, label="B3")
+Sy3x2<-carms.arrow(Sy3x2, 9, 10, rate=0, arc=-.2, label="failed")
+	dev.new(width=15, height=8, unit="in")
+	diagram(Sy3x2, rate.text.y.shift=0.7,shadow=FALSE )
+
+# usage: simulate.carms(x, solution, mission_time, intervals=50, cycles=2000)
+Sy3x2<-simulate(Sy3x2, "rk", 2,50)
+
+plot(Sy3x2)
