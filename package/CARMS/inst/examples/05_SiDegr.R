@@ -20,5 +20,5 @@ SiDegr<-carms.arrow(SiDegr, from=2, to=3, rate="B2", arc=.2, label="B2")
 # usage: simulate.carms(x, solution, mission_time, intervals=50, cycles=2000)
 SiDegr<-simulate.carms(SiDegr, solution="rk", mission_time=2, intervals=50)	
 	
-		diagram(SiDegr)
-		plot(SiDegr)
+	diagram(SiDegr)
+	plot(SiDegr)

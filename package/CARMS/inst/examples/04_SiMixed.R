@@ -1,6 +1,5 @@
 library(CARMS)			
 		
-			
 # usage carms.make<-function(title, diagram_grid=c(11,12),...) {			
 SiMixed<-carms.make("Single        Mixed population")			
 #usage carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, plot.color=NULL,  description="")			
@@ -19,5 +18,5 @@ SiMixed<-carms.arrow(SiMixed, from=2, to=3, rate="B2", arc= -.2, label="B2")
 # usage: simulate.carms(x, solution, mission_time, intervals=50, cycles=2000)
 SiMixed<-simulate.carms(SiMixed, "rk", 1)			
 
-			diagram(SiMixed)
-			plot.carms(SiMixed)
+	diagram(SiMixed)
+	plot.carms(SiMixed)

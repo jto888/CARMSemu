@@ -1,6 +1,6 @@
 library(CARMS)
 
-# usage carms.make<-function(title, diagram_grid=c(12,12),...) 
+# usage carms.make<-function(title, diagram_grid=c(12,12),...)
 Pa2RCov<-carms.make(title="Parallel         Repair coverage", diagram_grid=c(9,13))
 #usage carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, plot.color=NULL,  description="")
 Pa2RCov<-carms.state(Pa2RCov, prob=1, name="Fault free", size=7, h2w=14/20, position=c(3,3) )
@@ -10,7 +10,7 @@ Pa2RCov<-carms.state(Pa2RCov, prob=0, name="Undetected failure in spare", size=7
 Pa2RCov<-carms.state(Pa2RCov, prob=0, name="Failed unsafe", size=7, h2w=14/20, position=c(7,8) )
 
 
-# carms.base(x, value, time_units=NULL, base_label=NULL, description="")  
+# carms.base(x, value, time_units=NULL, base_label=NULL, description="")
 Pa2RCov<-carms.base(Pa2RCov, 1, time_units="hours",  description="Failure rate")
 Pa2RCov<-carms.base(Pa2RCov, 9e-1,  base_label="coverage",description="coverage")
 

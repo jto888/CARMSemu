@@ -9,7 +9,7 @@ SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, full",size=4.5,  h2w=.4, posit
 SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, half",size=4.5,  h2w=.4, position=c(8,9))
 SaGyro<-carms.state(SaGyro, prob=0, name="failed state",size=3, h2w=1.7, position=c(11,6))
 
-# carms.base(x, value, base_label=NULL, description="") 
+# carms.base(x, value, base_label=NULL, description="")
 SaGyro<-carms.base(SaGyro, 5e-2, time_units= "thousand Hours", base_label="B1", description="gyro failure")
 SaGyro<-carms.base(SaGyro, 1e-1, base_label="B3", description="monitor disable")
 

@@ -1,13 +1,13 @@
 library(CARMS)
 
-# usage carms.make<-function(title, diagram_grid=c(12,12),...) 
+# usage carms.make<-function(title, diagram_grid=c(12,12),...)
 Pa2Rep2<-carms.make(title="Parallel         Repair with 2 repairmen", diagram_grid=c(9,13))
 #usage carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, plot.color=NULL,  description="")
 Pa2Rep2<-carms.state(Pa2Rep2, prob=1, name="Both elements working", size=7, h2w=14/20, position=c(3,5) )
 Pa2Rep2<-carms.state(Pa2Rep2, prob=0, name="1 good, 1 in repair", size=7, h2w=14/20, position=c(7,5) )
 Pa2Rep2<-carms.state(Pa2Rep2, prob=0, name="Both in repair", size=7, h2w=14/20, position=c(11,5) )
 
-# carms.base(x, value, time_units=NULL, base_label=NULL, description="")  
+# carms.base(x, value, time_units=NULL, base_label=NULL, description="")
 Pa2Rep2<-carms.base(Pa2Rep2, 1e-1, time_units="hours",  description="Failure rate")
 Pa2Rep2<-carms.base(Pa2Rep2, 2e2, time_units="hours",  description="Repair rate")
 

@@ -1,6 +1,6 @@
 library(CARMS)
 
-# usage carms.make<-function(title, diagram_grid=c(12,12),...) 
+# usage carms.make<-function(title, diagram_grid=c(12,12),...)
 Pa2R2St<-carms.make(title="Parallel         Two-stage repair", diagram_grid=c(9,13))
 #usage carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, plot.color=NULL,  description="")
 Pa2R2St<-carms.state(Pa2R2St, prob=1, name="Both elements working", size=9, h2w=19/57, position=c(3,3) )
@@ -8,7 +8,7 @@ Pa2R2St<-carms.state(Pa2R2St, prob=0, name="One element failed", size=9, h2w=19/
 Pa2R2St<-carms.state(Pa2R2St, prob=0, name="Both elements down", size=9, h2w=19/57, position=c(11,3) )
 Pa2R2St<-carms.state(Pa2R2St, prob=0, name="Failure found,replacing", size=9, h2w=19/57, position=c(7,6) )
 
-# carms.base(x, value, time_units=NULL, base_label=NULL, description="")  
+# carms.base(x, value, time_units=NULL, base_label=NULL, description="")
 Pa2R2St<-carms.base(Pa2R2St, 1, time_units="hours",  description="Repair rate")
 Pa2R2St<-carms.base(Pa2R2St, 1e-2, time_units="hours",  description="Failure rate")
 Pa2R2St<-carms.base(Pa2R2St, 2, time_units="hours",  description="Debugging or fault-isolation rate")
