@@ -104,8 +104,6 @@ diagram.carms<-function(x, text.size=0.7, rate.text.y.shift=0.7,shadow=FALSE ) {
 				shadow.size=shadow.size, curve=curve		
 				)		
 		}				
-		
-				
 				
 }				
 				

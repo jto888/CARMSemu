@@ -17,19 +17,21 @@ examples.carms<- function(action="list", file=NULL, package="CARMS")  {
 			if(is.null(file)) stop("file argument is required")	
 			source(paste0(root,"/examples/",file))	
 			ret<-1	
-		},		
-		"copy" = {		
-			if(is.null(file)) stop("file argument is required")	
-			file.copy(paste0(exdir,file), paste0(getwd(),"/",file), overwrite=T)	
-			ret<-TRUE	
-		},		
+		},
+# as written, the copy functionality violates CRAN rules about using the wd of users
+# I am content to leave this functionality out		
+#		"copy" = {		
+#			if(is.null(file)) stop("file argument is required")	
+#			file.copy(paste0(exdir,file), paste0(getwd(),"/",file), overwrite=T)	
+#			ret<-TRUE	
+#		},		
 		"list"= {		
 			ret<-df	
 		},		
 		"dir"= {		
 			ret<-exdir	
 		},		
-	stop(paste0("No handler for ", action))			
+	stop(paste0("No handler for ", action, "action"))			
 	)			
 ret				
 }				

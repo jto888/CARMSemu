@@ -10,16 +10,16 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	    s <- strsplit(x, " ")[[1]]				
 	    paste(toupper(substring(s, 1, 1)), substring(s, 2),				
 	          sep = "", collapse = " ")				
-	}				
-					
-					
+	}	
+	
+	oldpar <- par(no.readonly = TRUE)
+	on.exit(par(oldpar))
+				
 	solution<-x$simulation$solution				
 	mission<-x$simulation$simcontrol$mission				
 	intervals<-x$simulation$simcontrol$intervals				
 	units<- .simpleCap(x$time_units)				
 	cycles<-x$simulation$simcontrol$cycles				
-					
-					
 					
 	Title<- x$title				
 	# define a subtitle with simulation information				
@@ -59,12 +59,7 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	small_y_ticks<-seq(ylim[1], ylim[2], by=.02)				
 	large_y_ticks<-seq(ylim[1], ylim[2], by=.1)				
 	labeled_y_ticks<-seq(0,1, by=.2)				
-					
-					
-					
-					
-					
-					
+				
 	# Generate the plot				
 	x_values<-seq(0,mission, by=mission/intervals)				
 	dev.new(width=9, height=6, unit="in")				
@@ -99,9 +94,6 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	abline(v=large_x_ticks, col="grey", lwd=1, xpd=F)				
 	abline(h=large_y_ticks, col="grey", lwd=1, xpd=F)				
 					
-					
-					
-					
 	for(state in 1:nstates) {				
 		if(spline_curve==TRUE) {			
 			lines(smooth.spline(x_values, x$simulation$P[,state], nknots=knots), lwd=lwd, col=colors[state])		
@@ -109,8 +101,7 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 			lines(x_values, x$simulation$P[,state], lwd=lwd, col=colors[state])		
 		}			
 	}				
-					
-					
+	
 	# add a legend				
 	le<-NULL; col<-NULL; lty<-NULL; cex<-NULL; lwd<-NULL				
 	for(state in 1:nstates) {				
@@ -122,6 +113,5 @@ plot.carms<-function(x, spline_curve=TRUE, knots=10, ...) {
 	}				
 					
 	legend("topright", inset=c(-.17,0), legend=le, col=colors[1:state], lty=lty, lwd=lwd, cex=cex, bg="white", xpd=T)				
-					
-					
+
 }					

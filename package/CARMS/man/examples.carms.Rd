@@ -14,7 +14,7 @@
 
 \arguments{
     \item{action}{
-        A string indicating how the function is to operate. "list", "run", "copy" and "dir" are expected arguments.
+        A string indicating how the function is to operate. "list", "run", and "dir" are expected arguments.
 	}
 	\item{file}{
 		An integer representing the file row in the "list" dataframe, or string providing the exact file name desired to be sourced. 
@@ -28,14 +28,14 @@
 	For the "list" action a dataframe with single column named "examples".
 	For the "dir" action a string providing the examples directory reference.
 	For a successful "run" action a 1 will be returned. Of course the diagram and plot will also display.
-	For a successful "copy" action TRUE will be returned.
 }
 
 \details{
 	This function is provided as a crutch for users of the CARMS package who may have no
 	prior experience with R. To them a sourced script has been "run". It is also desirable 
-	for them to copy example scripts into their working directory for examination and edit, rather
-	than accessing the examples (and potentially modifying them) from the installed examples directory.
+	for them to copy example scripts into something like their working directory for examination and edit.
+	The "dir" output provides information for  the user to locate the installed examples. It is
+	left to the user as to what to do with the example scripts.
 }
 
 \references{

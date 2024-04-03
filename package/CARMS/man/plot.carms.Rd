@@ -40,7 +40,7 @@
 	SiSimpl<-carms.base(SiSimpl, 1, time_units="hours",  description="Failure rate")
 	SiSimpl<-carms.arrow(SiSimpl, from=1, to=2, rate="B1",label="B1")
 	SiSimpl<-simulate(SiSimpl, solution="rk", mission_time=200)
-	\dontrun{
+	\donttest{
 	plot.carms(SiSimpl)
 	plot(SiSimpl)
 	}
