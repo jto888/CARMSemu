@@ -48,8 +48,7 @@
 \examples{
 	examples() # will return a dataframe listing the available examples
 	examples("dir") # will return the installed examples directory reference.
-	\dontrun{
+	\donttest{
 	examples("run", 1) # will source the first example
-	examples("copy", 2) # will copy the second example to the working directory
 	}
 }
