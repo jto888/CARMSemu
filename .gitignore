@@ -25,7 +25,7 @@ package/CARMS.Rcheck/
 *.msi
 *.msm
 *.msp
-*.zip
+#*.zip
 *.tar.gz
 
 # Windows shortcuts
