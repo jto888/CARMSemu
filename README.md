@@ -1,295 +1,332 @@
-CARMSemu
-========
+---
+title: Continuous Time Markov Rate Modeling on R
+---
 
  
 
-This repository will contain progressive development utilizing the R Computing
-environment https://www.r-project.org/ in an effort to emulate the functionality
-of a CARMS program written by Paul Pukite and featured in his book “Modeling for
-Reliability Analysis” ISBN: 978-0-780-33482-3. The reason for emulation is that
-the CARMS program was written to run only in the Windows 3.1 operating system. R
-provides a cross platform environment (Unix, Linux, Windows, macOS) and provides
-for necessary upgrades as computer architectures progress.
+Markov models often referred to as Markov chains are ubiquitous in the world of
+statistical analysis. In most Markov systems states are defined to describe the
+system status. A fundamental principle of a Markov process is that the system
+will transition from one state to another strictly on some probabilistic basis,
+without knowledge or concern of any previous history. This excludes some forms
+of potential analysis, but renders a structured system of modeling that has
+proven useful in many cases.
 
-The ultimate goal is to build an open source, emulated application package for
-the R environment, perhaps named CARMS. The focus for now is on the back end
-technical code that will generate matching results. Much attention must be given
-to user interface and graphic representation of the Markov Models. This will all
-take considerable development effort.
+For reliability and safety analysis a special case of the semi-Markov process
+introduced in 1954 by Paul Levy is employed. This application of Markov modeling
+considers the transitions from state to state occurring on the basis of constant
+rates, exponentially random. Commonly transitions occur from some working state
+to some form of failure state (either partial or complete). Correspondingly, but
+not always, a repair transition can move the state back to a more complete
+operational status.
 
-As a first step, a chained simulation algorithm has been written and tested
-across a number of examples from the original CARMS distribution. Here a few of
-these examples are demonstrated, with code that anyone can run in an R console.
+Rate modeling has also been used in some queuing processes. The rates of
+interest in such cases may be arrivals to the queue and dispatch rates from the
+queue. The states would likely regard the size or content of the queue.
 
-jeep.R
-------
+While there are many scholarly books and papers on Markov modeling theory with
+mesmerizing equations and formulas this is not the intent of this discussion.
+Rather it is desired to bring the technique to a potential analyst in a more
+intuitive way.
+
+A tool for such presentation has been introduced in “Modeling for Reliability
+Analysis” by Jan and Paul Pukite. Unfortunately, the computer application
+presented in that work, CARMS, was written for the 16-bit Windows 3.1 operating
+system. In collaboration with Paul Pukite an emulation of this application has
+been prepared to run on the cross-platform environment developed by the R
+Project for Statistical Computing, or R for short. The R environment is
+continuously developed such that it can be reasonably anticipated that a package
+written for this environment will survive future evolution of computer
+architectures and operating systems.
+
+The CARMS way
+-------------
+
+The philosophy of user interaction with CARMS is to generate a graphic depiction
+of the system states and draw connecting arrow notated lines, often arcs,
+indicating transitions. The transitions are assigned rate values, often as
+multiples or combination of base element rates. The user can specify a method of
+solution for the system model. The software generates the applicable matrix
+representing the partial differential equations defined by the transitions and
+computes a solution by integration. Then a plot can be displayed of the history
+of state probabilities over a given mission time.
+
+An example here could be worth a thousand words. The earliest simple example
+provided in “Modeling for Reliability Analysis” is entitled jeep. This example
+actually presents two separate models on one diagram and analysis. The first
+model represents a vehicle with 4 tires. Regardless of wear there is assumed to
+be a constant risk of tire failure, represented by a rate of failure per mile.
+In this simple model failed tires are neither fixed nor replaced, so the
+probability of being stranded with only 3 operable tires is 1-exp(-failure_rate
+\* time). Correspondingly the probability of having a jeep with all 4 tires
+operable over time is easily anticipated to be exp(-failure_rate \* time).
+
+These relationships can easily be modeled in an Excel spreadsheet. Use 4e-4 as
+the failure rate for any one of original tires per mile. Times will be a series
+of miles leading to 10000 miles to match the provided example. Maybe it wasn’t
+obvious that “failure probability equals 1-e\^(-lambda t)” represents an exact
+integration of the exponential failure rate function. Since the rate represents
+a derivative of the function of interest, integration is required to obtain the
+underlying function.
+
+Now, the second model assumes that a spare is available, such that it is
+immediately used upon failure of any one original tire. However, the spare is
+perhaps just a doughnut and has a higher fail rate.
+
+The diagram for these two models is depicted as:
 
 ![](images/jeep_diagram.jpg)
 
--   This model considers 2 Markov chains for modest comparison in one run
+The resultant plot of the solutions is:
 
--   Initial states are 1 and 3, both considering 4 tires working
+![](images/jeep_plot.jpg)
 
--   State 2 indicates failure after one of the 4 tires goes flat
+It is not as easy to see how one could model the second case in a spreadsheet
+where the probability of operating on 3 original tires and one spare initially
+increases, but ultimately declines due to the failures of either one of the
+original 3 tires or the spare. This delays the case where one is stranded with
+only 3 operable tires. The answer to this dilemma is that the second case must
+be integrated simultaneously through a series of integration intervals.
 
--   State 4 considers that a spare tire has been deployed
+The original CARMS application aimed to largely obscure the details of
+differential equation integration and produce graphical results from a user
+generated diagram of the Markov model with rate data added.
 
--   Finally state 5 indicates failure after one of the remaining 3 original
-    tires or the spare go flat
+The CARMS package
+-----------------
+
+The functionality of the original CARMS application has now been emulated in a
+package for operation on the R platform. This brings CARMS to life on today’s
+operating systems in a cross-platform way. Windows, Unix-like, and MacOS systems
+can all run this tool as if a native application. It is necessary for a user to
+install the R system in order to use the CARMS package. However, it is not
+necessary to learn R programming to use it. Instructions for installing R are
+provided on the R web site <https://www.r-project.org/>.
+
+Once R has been installed on Windows, a rather terse window will open called the
+console, it is actually a program named Rgui. From there it is simple to select
+through menu items for Packages-\>Install package(s), selecting a mirror (just
+as you did for the R installation itself) then scrolling down to CARMS.
+
+This installation is only performed once on a freshly installed R system.
+However, on every start of a new R instance it is necessary to load the library
+into memory with the simple command library(CARMS) onto the console.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/jeep.R")
+library(CARMS)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-![](images/jeep.jpeg)
+[ This writing has quickly become a Windows specific discussion. There are
+significant differences while running under Linux or MacOS. Only Windows has the
+Rgui.exe program to use as a console. On Linux (and assumed also for MacOS) in
+its raw form R is an executable that opens in the terminal. This is not as
+friendly a place to operate due to extreme terseness (no menus, and poor line
+editing). For this reason, many users then opt for an application named RStudio.
+While this application provides a Console pane, it also has a lot more things
+going on that would take more time to discuss here. Windows users are
+discouraged from using RStudio for this presentation.]
 
-Execution of this simulation is slower than I would hope for. But this is still
-only written in interpreted R core language, which is known to suffer given loop
-functions with high cycles. Here, 5000 cycles seemed to be required to generate
-pleasing smooth curves. In the future this simulation will be executed from
-compiled C++ code with remarkably improved performance. I also suspect that
-integration of the partial differential equations will generate smooth curves
-more effectively.
+Now with the simple command demo(jeep) the initial example is displayed. Yes,
+annoyingly it takes a few presses of the Enter key to complete.
+
+An entire library of examples is also available. The command examples() will
+list them. Any of the examples can be run by either calling the examples
+function with the number of the example as a second argument after “run”. A
+command of examples("run", 1)will run the jeep example again, but all at once.
+It is also possible to copy an example name as an argument inside quotation
+marks such as
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+examples("run", "48_PerCPUIO.R")
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
  
 
-Performance Queuing Simulation (percpuio)
------------------------------------------
-
-![](images/percpuio_diagram.jpg)
-
-This model is based on 3 slots existing in a job queue for computer processing.
-As the cpu processes a job the I/O system can place a new job into the queue.
-
-In state 1 the queue is full with 3 jobs for the cpu to perform. The cpu can
-perform one job at a time, so state 2 is arrived at where there are 2 jobs left
-in the queue and one slot open. In state 2 the cpu can operate on a single job
-or the I/O can refill the single open slot to alter the state. Since the cpu job
-rate is somewhat higher than a single I/O rate there is a greater propensity to
-move to state 3 where only one job is left in the queue. Since there are 2 slots
-open at state 3, both of the available I/O units can be deployed to resupply the
-queue. Finally, it is possible for the cpu to exhaust the job queue at state 4.
-Since the 2 I/O units are available at state 4, refilling of job slots proceeds
-and so there will be expected steady state performance over time.
-
-This script now calls on the Runge-Kutta integration algorithm to resolve the
-system of ordinary differential equations for this model.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/percpuio.R")
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-![](images/percpuio.jpg)
-
-CARMS object development and diagram building.
+ CARMS object development and diagram building
 ----------------------------------------------
 
-Up to this point example scripts have been executable on an R Console without
-any package installations. These scripts have demonstrated back end calculation
-capabilities and rudimentary graphical response to results.
-
-One of the key characteristics of the CARMS application is the user preparation
-of Markov diagrams defining the model that will eventually be simulated. In the
-case of the original CARMS application the user involvement was intended to be
-interactive with a graphical screen. For this R emulation a different approach
-is to be utilized.
-
-In R it is expected that the graphical diagram capabilities of package ‘diagram’
-will be used. In order to demonstrate diagramming examples a new user to R would
-have to install package diagram into their R system.
-
-### Installing package diagram
-
-Since package ‘diagram’ is a long established member on the CRAN repository it
-can be simply installed by copying the following line into the R Console:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-install.packages("diagram")
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-You will have been asked to select a CRAN mirror --- the first selection always
-works for me.
-
-This package installation is required only once on a freshly installed R system.
-
- 
-
-### CARMS object
-
 It has been said that “everything in R is an object”. In the case of this CARMS
-emulation the data defining each model is stored in a CARMS object. The CARMS
-object for any example is generated through a series of script lines not unlike
-the lines of original scripts contained in .mm files. The script lines are
-generated in turn through a series of functions that will form the basis of a
-CARMS package.
+emulation the information defining each model is stored in a carms object. The
+carms object for any model is generated through execution of a series of script
+lines. These script lines can be written on any text editor and will usually be
+saved with the .R suffix. This is the method of persistence for all examples
+that have been prepared.
 
-### Diagram preparation
-
-For initial diagram development it is of primary interest to define the states.
-Part of this definition is the placement and sizing of the state ellipse
-graphics on a canvas. In order to simplify the placement of state graphic
-elements a flexible grid system has been devised. The grid configuration is set
-in function carms.make. Each state can be positioned to be centered on a
-particular grid tile. The position for each state is defined by a vector of
-c(grid_column, grid_row) in a call to carms.state. After definition of states it
-is possible to call for the diagram to be drawn, such that alterations to the
-script lines can be made on a trial and error basis.
-
-First it is necessary to load the CARMS emulation functions into the current R
-session.
+The first script line command for forming a carms object is unsurprisingly
+carms.make. One always gives an object name, the make.carms function must also
+be given a title, which will be used to annotate its eventual plot.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/LoadCARMSemulationFunctions.R")
+Pa2Simpl<-carms.make(title="Parallel        Same failure rates", diagram_grid=c(9,13))
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The script lines for creating the first simple two component parallel example
-follows, the leading hash mark denotes comments and were included so that the
-arguments, including defaults, could be understood.
+This line will establish an initial carms object named Pa2Simpl modeling 2
+elements functioning in parallel. It is also defining a grid system for the
+diagram that has 9 rows and 13 columns. This grid is applied to whatever output
+plot size may eventually be defined.
 
- 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# usage carms.make(title, diagram_grid=c(11,12))
-Pa2Simpl<- carms.make( title = "Parallel     Same failure rates")
-# usage carms.state(x, prob,  name, size=4, h2w=21/24, position, description="")
-Pa2Simpl<- carms.state(Pa2Simpl, prob=1, name="P1", size=7, position=c(2,6))
-Pa2Simpl<- carms.state(Pa2Simpl, prob=0, name="P1", size=7, position=c(5,6))
-Pa2Simpl<- carms.state(Pa2Simpl, prob=0, name="P1", size=7, position=c(8,6))
+Now to place a first state on the diagram the cams.state function is used. The
+object building functions after carms.make all progressively modify the carms
+object in memory. So the object name is used as the result of the function that
+will act on the formative object provided as a first argument.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-It is now possible to view the way the Pa2Simpl object has been stored in R by
-simply calling for it:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Pa2Simpl
+Pa2Simpl<- carms.state(Pa2Simpl, prob=1.0, name="2 good", size=7, h2w=14/20, position=c(3,5) )
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You will not be troubled here with a view of what has been just delivered, but
-suffice to say that all the information is available to further functions in the
-CARMS emulation.
+The carms.state function defines the initial probability for the state, gives it
+a display name, then establishes graphics properties as a relative size and a
+specific position. The position values center the object ellipse at the center
+of the grid column and row, as previously defined. In this case the first state
+will be positioned toward the left margin at a vertical position in the middle
+of the diagram. It is also possible to define the proportions of the ellipse,
+but in this example a default has been used.
 
-Now to view the formative diagram enter
+The next two states in this simple example are added to the carms object with
+similar script lines.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Pa2Simpl<-carms.state(Pa2Simpl, prob=0, name="1 failed", size=7, h2w=14/20, position=c(7,5) )
+Pa2Simpl<-carms.state(Pa2Simpl, prob=0, name="2 failed", size=7, h2w=14/20, position=c(11,5) )
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These next states will be placed on the diagram progressively moving to the
+right along the center of the diagram. Of course the initial state probabilities
+for these subsequent states is zero. Once any state lines have been added to the
+R script it is possible to get a preliminary view of the formative diagram
+simply calling:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 diagram(Pa2Simpl)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-![](images/Pa2Simpl_diagram1.jpeg)
+![](images/Pa2Simpl_states_diagram.jpg)
 
-It is possible and even likely that a user will alter values in the position
-argument to move the state ovals to pleasing orientation. In this case the grid
-row 6 places the state ovals in the vertical center of the canvas. One could
-shift the states to the right by adding 1 or 2 to the grid column entries for
-each state.
+As a diagram is being developed it is common to make several views of the
+diagram for trial and modification activity. One could say his makes diagram
+building semi-interactive.
 
- 
-
-The R graphics window that has been created to display this diagram is able to
-be resized, copied to the clipboard, and saved to file. For the present, the
-canvas is larger than was needed. This will be fine for small models, however
-larger graphics device sizes are possible to create when needed. For example
-here is are the script lines for the SaGyro example:
-
- 
+It is also possible to view the way that the carms object is stored in memory by
+simply typing its name in the console. The carms object is a list construct
+which is basic to R. It should be noted here that the state names given in
+carms.state command lines are simply those that will appear on the diagram.
+Internally the carms object identifies the states numerically in the order they
+were entered. This can be seen in the list object Pa2Simpl\$state where the
+state numbers are enclosed in double brackets.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-SaGyro<-carms.make(title="Gyro Failure   Simulation", diagram_grid=c(11,12) )
-SaGyro<-carms.state(SaGyro, prob=1, name="All Operating",size=2.2,h2w=2.3,  position=c(2,6))
-SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, full",size=4.5,  h2w=.4, position=c(4,3))
-SaGyro<-carms.state(SaGyro, prob=0, name="2 gyros, full",size=4.5,  h2w=.4, position=c(4,9))
-SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, full",size=4.5,  h2w=.4, position=c(6,6))
-SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, full",size=4.5,  h2w=.4, position=c(8,3))
-SaGyro<-carms.state(SaGyro, prob=0, name="1 gyro, half",size=4.5,  h2w=.4, position=c(8,9))
-SaGyro<-carms.state(SaGyro, prob=0, name="failed state",size=3, h2w=1.7, position=c(11,6))
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The graphics device is altered by a further definition before displaying the
-diagram
-
- 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-dev.new(width=15, height=8, unit="in")
-diagram.carms(SaGyro, shadow=FALSE)
+Pa2Simpl$state
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
  
 
-This larger diagram can be resized to suit other means of display. The diagram
-is composed of vector graphics.
+State transition definitions
+----------------------------
 
-![](images/SaGyro_diagram1.jpg)
-
-Entering transitions
---------------------
-
-Transitions are composed of rates and connecting arrows. Consistent with the
-original CARMS application, transition rates are initially entered as base
-values. These base values are often combined as multiples or additions for
-individual transitions. Unsurprisingly, the CARMS emulation function for base
-entry is carms.base. Continuing with the SaGyro example the script lines for
-adding base values to the carms object are:
+Transitions are comprised of a directional sequence (from, to) and a numeric
+rate. Often rates are defined by multiples or combinations of some base
+elements. For this reason, CARMS provides a mechanism for storing such base
+element rates. This is done using the carms.base function. As with carms.state
+the carms.base function adds information to the carms object, so its result is
+returned to the carms object name and the first argument is the carms object as
+so far developed. In this first simple example there is only one base element,
+and one might think this step could be dispensed with, however it is the only
+location to indicate the units of time used for the model and must be provided.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-SaGyro<-carms.base(SaGyro, value=5e-2, time_units= "thousand Hours", base_label="B1", description="gyro failure")
-SaGyro<-carms.base(SaGyro, value=1e-2, base_label="B2", description="false switch")
-SaGyro<-carms.base(SaGyro, value=1e-1, base_label="B3", description="monitor disable")
+Pa2Simpl<-carms.base(Pa2Simpl, value=1.0, time_units="hours")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Notice how the SaGyro object is passed into each successive script line as the
-first argument. The action of the script line function is to modify this object
-and return it to its same label. The value and base label are stored in the
-carms object. When carms.arrow is called, labels of B1 and b1 are generated by
-default each holding the value in function scope for the first entered base then
-B2, b2 etcetera for successive base values even if different than the provided
-label. If provided, the base_label will also be generated in carms.arrow
-function scope to be used to access the base value. This enables a flexible way
-to define computed values for individual transitions. It should also be noted
-that the first base entry to the carms object is used for definition of the
-time_units, which will be used in presentation of plot results of simulations.
+The value of this base rate is later retrievable using lables B1, or b1 because
+this was the first base value entered. Subsequent base values will be
+retrievable using lables B2, B3 (or b2, b3) etcetera. It is also possible to
+identify any base value with a particular base_label entered as a string
+argument.
 
-Connecting arrows are entered using function carms.arrows. Importantly the
-states from and to are entered according to the order in which the states were
-entered into the carms object. The rates are entered as a value perhaps as
-calculated, but a label is separately provided for the diagram. There is no
-other assurance that the label matches the rate except by the user upon entry.
-Finally an arc dimension can be added, 0 for straight line, positive values for
-convex, negative for concave curves. Again, the user may certainly adjust these
-values in a progressive trial basis viewing the resulting diagram between
-trials.
+With this base value specified it is now possible to complete the definition of
+the transitions in this simple model.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-SaGyro<-carms.arrow(SaGyro, 1, 2, rate="2*B1", label="2*B1", arc=.2)
-SaGyro<-carms.arrow(SaGyro, 1, 3, rate="B2", label="B2", arc= -.2)
-SaGyro<-carms.arrow(SaGyro, 1, 4, rate="B3", label="B3", arc=.3)
-SaGyro<-carms.arrow(SaGyro, 2, 5, rate="B2", label="B2", arc= .2)
-SaGyro<-carms.arrow(SaGyro, 2, 7, rate="B1+B3", label="B1+B3",arc=-.1)
-SaGyro<-carms.arrow(SaGyro, 3, 6, rate="2*B1", label="2*B1", arc=.1)
-SaGyro<-carms.arrow(SaGyro, 4, 7, rate="B1", label="B1", arc=-.1)
-SaGyro<-carms.arrow(SaGyro, 5, 7, rate="B1", label="B1", arc=.2)
-SaGyro<-carms.arrow(SaGyro, 6, 7, rate="B1", label="B1", arc=-.3)
-
-dev.new(width=15, height=8, unit="in")
-diagram.carms(SaGyro, shadow=FALSE, rate.text.y.shift=0.7 )
+Pa2Simpl<-carms.arrow(Pa2Simpl, from=1, to=2, rate="2*B1", arc=.35, label="2 * B1")
+Pa2Simpl<-carms.arrow(Pa2Simpl, from=2, to=3, rate="B1", arc=.35, label="B1")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-![](images/SaGyro_diagram2.jpg)
+Consistent with the apparent nomenclature from the original CARMS application
+transitions are defined using the carms.arrow function. Using a familiar
+technique of passing in the developing carms object as first argument continues.
+It is instructive to note that although the rate and label are the same in this
+example this is not always the case. The label string is the notation that will
+be provided on the diagram.
+
+It is possible to alter the appearance of the usually arcing arrow line by
+providing positive or negative values to an arc argument. It is also possible to
+alter the location of the arrow head (and its associated label) along a fraction
+of the arc travel. Here defaults have been used.
+
+With this base value specified it is now possible to complete the definition of
+the only transition in this simple model.
+
+Again by calling diagram(Pa2Simple) the effect of the specification for the
+transition arrow(s) can be viewed and modified as found pleasing through perhaps
+several trials.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+diagram(Pa2Simpl)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+![](images/Pa2Simpl_diagram.jpg)
+
+With a model completely defined as has been done here, it is possible to run a
+simulation on the model.
 
  
 
-Simulating the Markov Chain
----------------------------
+Implementing a solution
+-----------------------
 
-It is now possible to call for a simulation of the modeled system. Similar to
-other carms.xxx functions the function for simulation is simulate.carms. It is
-also called by directing its output back to the carms object. This places the
-result of simulation into the object, so that it can be called on for displaying
-the plot.
+Three methods of integrating the rate defined model over mission time are
+provided. The 4th order Runge-Kutta method is often specified, but can fail if
+the model is “too tight”. Unfortunately, no one has provided a definition as to
+what makes a model “too tight”.Suffice it to say some Runge-Kutta results make
+no sense. For this reason, a second analytic method, the backward difference
+method is also provided. Thirdly, a stochastic method is provided to develop the
+chain over numerous randomized cycles through the mission time. The original
+CARMS application developed this “chained” method using a Petri Net formalism.
+The stochastic chain method provided in the CARMS package provides the same
+result but takes advantage of the fact that all transitions are defined by
+rates.  Due to high cycling, typically in the thousands of iterations, the
+stochastic method would be expected to take more time. However, by coding this
+in compiled C++ code most models can be resolved with little apparent delay.
+
+The analytic methods in the CARMS package are implementations of algorithms
+presented by William Stewart in “Introduction to the Numerical Solution of
+Markov Chains”. The stochastic chain algorithm was developed independently
+similar to methods used in R package stosim. For interested users the original
+development of this algorithm in slow interpreted R code is also provided as a
+basis for study. This working code can also be specified for any specific model.
+
+The four solution arguments are “rk”, “bd”, “chain”, and “chain_R”. Each
+solution method requires a mission time and a number of time intervals for
+evaluation. A default of 50 intervals seems adequate for most models. The
+chained method requires a specification for the number of cycles; 2000 is
+provided as a default. Some model results provide more pleading curves with
+increased cycling.
+
+Once a carms object has been fully defined any call to the simulate function can
+be made. The result of simulation is a matrix of probabilities fore each state
+at each interval. This matrix is added to the carms object in the same manner
+that all other model elements were. Subsequent calls to simulate on the same
+carms object will replace the simulation matrix with the last requested result.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-SaGyro<-simulate.carms(SaGyro, "bd", 40,50)
-plot.carms(SaGyro)
+Pa2Simpl<-simulate.carms(Pa2Simpl, solution="rk", mission_time=5, intervals=50)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-![](images/SaGyro_plot.jpeg)
+With a simulation provided to the carms object, the final step is to display a
+plotted result.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+plot(Pa2Simpl)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+![](images/Pa2Simpl_plot.jpg)

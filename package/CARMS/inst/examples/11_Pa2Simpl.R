@@ -1,7 +1,7 @@
 library(CARMS)
 
 # usage carms.make<-function(title, diagram_grid=c(12,12),...)
-Pa2Simpl<-carms.make(title="Single element        Same failure rates", diagram_grid=c(9,13))
+Pa2Simpl<-carms.make(title="Parallel        Same failure rates", diagram_grid=c(9,13))
 #usage carms.state<-function(x, prob,  name, size=4, h2w=21/24, position, plot.color=NULL,  description="")
 Pa2Simpl<-carms.state(Pa2Simpl, prob=1, name="P1", size=7, h2w=14/20, position=c(3,5) )
 Pa2Simpl<-carms.state(Pa2Simpl, prob=0, name="P2", size=7, h2w=14/20, position=c(7,5) )
