@@ -1,6 +1,5 @@
----
-title: Continuous Time Markov Rate Modeling on R
----
+Continuous Time Markov Rate Modeling on R
+=========================================
 
  
 
@@ -142,8 +141,8 @@ examples("run", "48_PerCPUIO.R")
 
  
 
- CARMS object development and diagram building
-----------------------------------------------
+CARMS object development and diagram building
+---------------------------------------------
 
 It has been said that “everything in R is an object”. In the case of this CARMS
 emulation the information defining each model is stored in a carms object. The
@@ -294,7 +293,7 @@ chain over numerous randomized cycles through the mission time. The original
 CARMS application developed this “chained” method using a Petri Net formalism.
 The stochastic chain method provided in the CARMS package provides the same
 result but takes advantage of the fact that all transitions are defined by
-rates.  Due to high cycling, typically in the thousands of iterations, the
+rates. Due to high cycling, typically in the thousands of iterations, the
 stochastic method would be expected to take more time. However, by coding this
 in compiled C++ code most models can be resolved with little apparent delay.
 
