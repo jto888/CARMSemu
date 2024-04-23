@@ -9,7 +9,7 @@
 # This file is an original developmental script and is very different in execution than a file
 # by the same name used as a demo within the CARMS package.			
 				
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/ChainedSimulation.R")				
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/pre_package/examples/ChainedSimulation.R")				
 				
 # key inputs				
 	# vector of states with initial probabilities			

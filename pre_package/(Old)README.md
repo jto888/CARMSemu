@@ -38,7 +38,7 @@ jeep.R
     tires or the spare go flat
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/jeep.R")
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/pre_package/examples/jeep.R")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ![](images/jeep.jpeg)
@@ -76,7 +76,7 @@ This script now calls on the Runge-Kutta integration algorithm to resolve the
 system of ordinary differential equations for this model.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/percpuio.R")
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/pre_package/examples/percpuio.R")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ![](images/percpuio.jpg)
@@ -139,7 +139,7 @@ First it is necessary to load the CARMS emulation functions into the current R
 session.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-source("https://raw.githubusercontent.com/jto888/CARMSemu/main/examples/LoadCARMSemulationFunctions.R")
+source("https://raw.githubusercontent.com/jto888/CARMSemu/main/pre_package/examples/LoadCARMSemulationFunctions.R")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The script lines for creating the first simple two component parallel example
