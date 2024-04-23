@@ -33,3 +33,22 @@ In contrast to the dynamic interest in the open model. For systems defined by a
 closed model the dynamic approach to steady state is often a minor
 consideration. There is little interest in what may even be a contrived starting
 position to the way the system is expected to operate over long periods of time.
+
+ 
+
+John Andrews, Nottingham University
+
+A choice presentation was made by Professor John Andrews and his assistant
+Silvia Tolo at the RAMS2023 conference in Orlando . This was to demonstrate the
+“next generation” of fault tree technology. This would pique the interest of a
+FaultTree package developer on R. After a presentation of binary decision
+diagrams, which are already handled by the FaultTree package, Markov models and
+Petri nets were discussed for their potential to feed into tree elements. So,
+okay it was time to finally look deeper into Markov models. The CARMS emulation
+is an outgrowth of this awakening.
+
+The demonstration contained simple closed models of parallel elements with
+failure and repair. Beyond providing a results table for the state
+probabilities, they also produced a “state intensity” value. This is the basis
+for studies comparing results with the simplified fault free calculations
+utilized in the FaultTree package.
