@@ -40,15 +40,17 @@ John Andrews, Nottingham University
 
 A choice presentation was made by Professor John Andrews and his assistant
 Silvia Tolo at the RAMS2023 conference in Orlando . This was to demonstrate the
-“next generation” of fault tree technology. This would pique the interest of a
-FaultTree package developer on R. After a presentation of binary decision
-diagrams, which are already handled by the FaultTree package, Markov models and
-Petri nets were discussed for their potential to feed into tree elements. So,
-okay it was time to finally look deeper into Markov models. The CARMS emulation
-is an outgrowth of this awakening.
+“next generation” of fault tree technology. This would of course pique the
+interest of a FaultTree package developer on R. After a presentation of binary
+decision diagrams, which are already handled by the FaultTree package, Markov
+models and Petri nets were discussed for their potential to model certain
+dependencies. So, okay it was time to finally look deeper into Markov models.
+The CARMS emulation is an outgrowth of this awakening.
 
 The demonstration contained simple closed models of parallel elements with
-failure and repair. Beyond providing a results table for the state
+failure and repair. They made a point about modeling a dependency such that in a
+shared load array after a single unit failure the fail rate of the remaining
+unit would increase due to load. Beyond providing a results table for the state
 probabilities, they also produced a “state intensity” value. This is the basis
 for studies comparing results with the simplified fault free calculations
 utilized in the FaultTree package.
