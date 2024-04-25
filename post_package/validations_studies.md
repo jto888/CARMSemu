@@ -36,7 +36,7 @@ position to the way the system is expected to operate over long periods of time.
 
  
 
-John Andrews, Nottingham University
+### Dynamic Dependent Fault Tree Analysis
 
 A choice presentation was made by Professor John Andrews and his assistant
 Silvia Tolo at the RAMS2023 conference in Orlando . This was to demonstrate the
@@ -47,10 +47,46 @@ models and Petri nets were discussed for their potential to model certain
 dependencies. So, okay it was time to finally look deeper into Markov models.
 The CARMS emulation is an outgrowth of this awakening.
 
-The demonstration contained simple closed models of parallel elements with
-failure and repair. They made a point about modeling a dependency such that in a
-shared load array after a single unit failure the fail rate of the remaining
-unit would increase due to load. Beyond providing a results table for the state
-probabilities, they also produced a “state intensity” value. This is the basis
-for studies comparing results with the simplified fault free calculations
-utilized in the FaultTree package.
+The Markov demonstration contained simple closed models of parallel elements
+with failure and repair. They made an assumption in modeling a dependency such
+that after a single unit failure in a shared load array the fail rate of the
+remaining unit would increase due to load. Beyond providing a results table for
+the state probabilities, they also produced a “state intensity” value. This is
+the basis for studies comparing results with the simplified fault free
+calculations utilized in the FaultTree package. This could also represent a
+stepping off point for incorporating Markov model results in ftree objects of
+the FaultTree package.
+
+ 
+
+### Matrix Exponentiation
+
+For the dynamic probability of a single element failure over time it has been
+noted that the exponential function is indeed the “ideal” integration of the
+rate based partial differential. For more complex Markov models CARMS utilizes
+Runge-Kutta, or Backwards Differentiation solutions as well as a stochastic
+method for defining the dynamic probabilities of all states.
+
+In the code examples provided in William Stewart’s text, a Matlab function expm
+is used to establish an error measure over the other “simplified” integrations.
+No matter how you slice it, even expm function implementations all require some
+form of truncation of the infinite Taylor series. The R environment provides
+three packages that include such expm function implementations. They are:
+
+-   Matrix::expm
+
+-   pracma::expm
+
+-   expm::expm
+
+The expm package includes numerous method implementations for the expm function.
+There is lots a reading available on the topic within the documentation for
+these packages.
+
+Several example models are tested for validation, and performance.
+
+ 
+
+ 
+
+ 
