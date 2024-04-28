@@ -9,6 +9,7 @@ importFrom("utils", "modifyList")
 importFrom("grDevices", "dev.new")
 importFrom("methods", "is")
 importFrom("diagram", "plotmat")
+importFrom(Matrix, "expm")
 
 export(
 	carms.make,
@@ -25,6 +26,7 @@ export(
 	plot.carms,
 	examples.carms,
 	examples,
+	matexp.carms,
 diagram
 )
 S3method(plot, carms)
