@@ -18,8 +18,8 @@ Andrews_Tolo.carms<-function(x) {
 	rate<-tt_mat[,3]			
 	tt<-data.frame(from, to, rate)			
 				
-	unique(tt$from)			
-	if(! identical(seq(1,nstates),unique(tt$from))) stop("Not a closed model")		
+	#unique(tt$from)			
+	if(!nstates==length(unique(tt$from))) stop("Not a closed model")		
 				
 	Q<-matrix(0, nrow=nstates, ncol=nstates)			
 	for( a in 1:nrow(tt)){			
