@@ -1,5 +1,4 @@
 library(CARMS)
-rm(list=ls(all=TRUE))
 
 # usage carms.make<-function(title, diagram_grid=c(12,12),...)
 Pa2Diff<-carms.make(title="Parallel        Different failure rates", diagram_grid=c(9,13))
