@@ -1,3 +1,5 @@
+require(Matrix)
+
 matexp.carms<-function(x, mission_time=NULL) {			
 	# need to test that x is a carms object among perhaps other validations		
 	if(!is(x,"carms")){		

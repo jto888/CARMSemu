@@ -5,8 +5,15 @@ Andrews_Tolo.carms<-function(x) {
 	}			
 	if(is.null(x$arrows)) stop("no transitions defined in carms object")			
 				
-	nstates<- length(x$state)			
-				
+	nstates<- length(x$state)	
+	istates<-NULL
+	for(st in 1:nstates) {		
+		istates<-c(istates, x$state[[st]]$prob)	
+	}		
+	if(sum(istates>1)) stop("more than one initial state in carms object")
+	if(!is.null(x$Pfunction)) stop("carms object contains Pfunction(s)")
+
+	#test for closed model
 	# prepare the transition table			
 	tt_mat<-NULL			
 	for(ar in 1:x$arrows$narrows) {			
@@ -15,12 +22,17 @@ Andrews_Tolo.carms<-function(x) {
 				
 	from<-as.integer(tt_mat[,1])			
 	to<-as.integer(tt_mat[,2])			
-	rate<-tt_mat[,3]			
+	rate<-tt_mat[,3]
 	tt<-data.frame(from, to, rate)			
-				
-	#unique(tt$from)			
-	if(!nstates==length(unique(tt$from))) stop("Not a closed model")		
-				
+
+	# eliminate any zero transition rows for closed test		
+		zero_rows<-which(tt_mat[3]==0)	
+		if(length(zero_rows>0) )  tt_mat<-tt_mat[-zero_rows,]	
+		test_closed<-intersect(unique(tt_mat[,2]), unique(tt_mat[,1]))	
+		if(!length(test_closed) == length(unique(tt_mat[,2])) ) {	
+			stop("Not a closed model")
+		}	
+### should the tt dataframe be formed here after removal of zero transitions? ###				
 	Q<-matrix(0, nrow=nstates, ncol=nstates)			
 	for( a in 1:nrow(tt)){			
 		Q[tt$from[a], tt$to[a]]<-tt$rate[a]		
