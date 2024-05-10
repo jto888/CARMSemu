@@ -20,6 +20,7 @@ export(
 	simulate.carms,
 	simulate,
 	matP,
+	matQ,	
 #	StochasticChain,
 #	RungeKutta,
 #	BackwardDifference,
