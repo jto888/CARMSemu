@@ -2,7 +2,7 @@
 
 # extracts the infinitessimal  generator matrix from a carms object simulation 
 
-matP<-function(x) {
+matQ<-function(x) {
 
 	# need to test that x is a carms object among perhaps other validations				
 	if(!is(x,"carms")){				

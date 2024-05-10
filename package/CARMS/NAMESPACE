@@ -9,7 +9,7 @@ importFrom("utils", "modifyList")
 importFrom("grDevices", "dev.new")
 importFrom("methods", "is")
 importFrom("diagram", "plotmat")
-importFrom(Matrix, "expm", "norm")
+importFrom("Matrix", "expm", "norm")
 
 export(
 	carms.make,
