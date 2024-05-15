@@ -71,19 +71,12 @@ In the code examples provided in William Stewart’s text, a Matlab function exp
 is used to establish an error measure over the other “simplified” integrations.
 No matter how you slice it, even expm function implementations all require some
 form of truncation of the infinite Taylor series. The R environment provides
-three packages that include such expm function implementations. They are:
+multiple packages that include such expm function implementations. The most
+basic of these is the Matrix package, which has been used to run validations on
+the open models in the CARMS package examples.
 
--   Matrix::expm
-
--   pracma::expm
-
--   expm::expm
-
-The expm package includes numerous method implementations for the expm function.
-There is lots a reading available on the topic within the documentation for
-these packages.
-
-Several example models are tested for validation, and performance.
+It has further been found that execution of the expm function is fluid enough to
+provide this as a further simulation method in the CARMS package.
 
  
 
