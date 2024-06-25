@@ -8,7 +8,7 @@ License: GPL (>= 3)
 Copyright: copyright (c) OpenReliability.org 2024
 URL: http://www.openreliability.org
 LazyLoad: yes
-Imports: methods, diagram, Matrix
+Imports: Rcpp, methods, diagram, Matrix
 Author: David Silkworth [aut],
   Paul Pukite [aut],
   Jacob Ormerod [cre],
