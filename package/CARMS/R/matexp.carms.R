@@ -43,7 +43,7 @@ matexp.carms<-function(x, mission_time=NULL) {
 		if(length(zero_rows>0) )  tt_mat<-tt_mat[-zero_rows,]	
 		test_closed<-intersect(unique(tt_mat[,2]), unique(tt_mat[,1]))	
 		if(length(test_closed) == length(unique(tt_mat[,2])) ) {	
-			warn("Not an oopen model")
+			warning("Not an open model")
 		}	
 			
 	nstates<-length(istates)		
